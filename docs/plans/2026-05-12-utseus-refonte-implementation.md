@@ -26,7 +26,7 @@
 ```
 refonteWEB/
 ├── astro.config.mjs                         # T1, updated T2, T3
-├── tailwind.config.mjs                      # T3
+├── (no tailwind.config — Tailwind v4 CSS-first via @theme in global.css)
 ├── tsconfig.json                            # T1
 ├── package.json                             # T1
 ├── vitest.config.ts                         # T8
@@ -68,7 +68,7 @@ refonteWEB/
 │   │   └── zh/index.astro                   # T9 → fleshed T23
 │   └── styles/
 │       ├── global.css                       # T3
-│       └── tokens.css                       # T15
+│       └── (tokens live inline in global.css @theme; updated in T15)
 ├── tests/
 │   ├── i18n.test.ts                         # T8
 │   ├── lang-switcher.test.ts                # T14
@@ -972,70 +972,55 @@ git commit -m "feat(i18n): LangSwitcher with anchor-preserving target builder (T
 
 ### Task 15: Integrate Figma design tokens
 
+**Tailwind v4 note:** T3 installed Tailwind v4 (`@tailwindcss/vite` + CSS-first `@theme` config). There is no `tailwind.config.mjs` to edit; tokens live in the `@theme` block of `src/styles/global.css`. Tailwind utilities derive automatically from `--color-*`, `--font-*`, `--radius-*`, `--shadow-*`, `--spacing-*` namespaces.
+
 **Files:**
-- Create: `src/styles/tokens.css`
-- Modify: `src/styles/global.css`, `tailwind.config.mjs`
+- Modify: `src/styles/global.css`
 
 **Prereq:** Zixuan delivers Figma tokens (colors, type, spacing) — gate this task on that input. If delayed, ship with placeholder values from T3 and re-run this task when ready.
 
-- [ ] **Step 1: Create `src/styles/tokens.css` with Figma values**
+- [ ] **Step 1: Replace `@theme` block in `src/styles/global.css` with full Figma token map**
 
 ```css
-/* src/styles/tokens.css — values from Figma (Zixuan) */
-:root {
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
   --color-bg: #ffffff;
   --color-fg: #121212;
   --color-accent: #c0142a;
   --color-accent-soft: #fde8eb;
   --color-muted: #6b7280;
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-4: 1rem;
-  --space-8: 2rem;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+
+  /* Radii */
   --radius-sm: 4px;
   --radius-md: 8px;
-  --font-display: "Inter", system-ui, sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Shadows */
   --shadow-card: 0 2px 8px rgba(0,0,0,0.06);
 }
+
+body { background: var(--color-bg); color: var(--color-fg); }
 ```
 
-- [ ] **Step 2: Import in `src/styles/global.css`**
+This generates utilities: `bg-bg`, `bg-fg`, `bg-accent`, `bg-accent-soft`, `bg-muted`, `text-*` variants, `font-sans`, `font-display`, `rounded-sm`, `rounded-md`, `shadow-card`.
 
-Replace existing `:root` block with `@import './tokens.css';` at top.
+For per-step **spacing tokens** in v4, prefer Tailwind's built-in spacing scale (it auto-generates `--spacing-*` for all numeric utilities). Override only if Figma uses non-standard spacing values; in that case add `--spacing-1: 0.25rem;` etc. inside `@theme`.
 
-- [ ] **Step 3: Extend Tailwind config with full token map**
-
-```js
-// tailwind.config.mjs
-export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
-  theme: {
-    extend: {
-      colors: {
-        bg: 'var(--color-bg)', fg: 'var(--color-fg)',
-        accent: 'var(--color-accent)', 'accent-soft': 'var(--color-accent-soft)',
-        muted: 'var(--color-muted)',
-      },
-      fontFamily: { sans: 'var(--font-sans)', display: 'var(--font-display)' },
-      borderRadius: { sm: 'var(--radius-sm)', md: 'var(--radius-md)' },
-      boxShadow: { card: 'var(--shadow-card)' },
-    },
-  },
-  plugins: [],
-};
-```
-
-- [ ] **Step 4: Build + smoke**
+- [ ] **Step 2: Build + smoke**
 
 ```bash
-npm run build 2>&1 | tail -3
+npm run check && npm run build 2>&1 | tail -3
 ```
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 3: Commit**
 
 ```bash
-git add src/styles/tokens.css src/styles/global.css tailwind.config.mjs
+git add src/styles/global.css
 git commit -m "feat(style): integrate Figma design tokens (T15)"
 ```
 
