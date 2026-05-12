@@ -1,0 +1,29 @@
+---
+type Lang = 'en' | 'fr' | 'zh';
+interface Props { lang?: Lang; }
+const { lang = 'fr' } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="utc-footer bg-fg text-bg mt-16" data-lang={lang}>
+  <div class="mx-auto max-w-7xl px-4 py-10 grid gap-8 md:grid-cols-3">
+    <section>
+      <h3 class="font-bold mb-2">UTC</h3>
+      <address class="not-italic text-sm">
+        Université de Technologie de Compiègne<br/>
+        Rue du Dr Schweitzer, 60200 Compiègne, France
+      </address>
+    </section>
+    <section>
+      <h3 class="font-bold mb-2">UTSEUS</h3>
+      <p class="text-sm">Shanghai University, 99 Shangda Road, 200444 Shanghai</p>
+    </section>
+    <section>
+      <h3 class="font-bold mb-2">Links</h3>
+      <ul class="text-sm space-y-1">
+        <li><a href="https://www.utc.fr">utc.fr</a></li>
+        <li><a href="https://en.utseus.com">utseus.com</a></li>
+      </ul>
+    </section>
+  </div>
+  <div class="text-center text-xs py-4 border-t border-bg/10">© {year} UTC × UTSEUS</div>
+</footer>
