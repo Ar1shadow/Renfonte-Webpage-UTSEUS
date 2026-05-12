@@ -37,3 +37,6 @@ Thumbs.db
 *.local
 coverage/
 .cache/
+
+# claude code
+.claude/
