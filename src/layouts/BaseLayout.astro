@@ -1,0 +1,34 @@
+---
+// src/layouts/BaseLayout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang: 'en' | 'fr' | 'zh';
+  ogImage?: string;
+}
+const { title, description = '', lang, ogImage = '/images/og-default.jpg' } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <link rel="alternate" hreflang="en" href={`/en/`} />
+    <link rel="alternate" hreflang="fr" href={`/fr/`} />
+    <link rel="alternate" hreflang="zh" href={`/zh/`} />
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main id="content"><slot /></main>
+    <Footer lang={lang} />
+  </body>
+</html>
