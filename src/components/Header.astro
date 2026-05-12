@@ -1,0 +1,31 @@
+---
+// src/components/Header.astro
+// T8 will create src/i18n/ui.ts with the proper Lang type; until then use the
+// inline fallback below. The T8 implementer should swap this for:
+//   import type { Lang } from '../i18n/ui';
+type Lang = 'en' | 'fr' | 'zh';
+interface Props { lang?: Lang; }
+const { lang = 'fr' } = Astro.props;
+---
+<header class="utc-header bg-bg border-b border-fg/10">
+  <div class="mx-auto max-w-7xl flex items-center justify-between px-4 py-3">
+    <a href={`/${lang}/`} class="flex items-center gap-2">
+      <img src="/images/logo-utseus.svg" alt="UTSEUS" class="h-10" />
+    </a>
+    <nav aria-label="Main">
+      <ul class="hidden md:flex gap-6 text-sm">
+        <li><a href="#about">About</a></li>
+        <li><a href="#mobility">Mobility</a></li>
+        <li><a href="#complexcity">Lab</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Voices</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="flex items-center gap-4">
+      {/* T14: replace this placeholder with <LangSwitcher current={lang} /> */}
+      <span class="text-sm" aria-label="Language">🌐 {lang.toUpperCase()}</span>
+      <a href="/docs/brochure-utseus.pdf" class="hidden sm:inline-block px-3 py-1 bg-accent text-white text-sm rounded">Brochure</a>
+    </div>
+  </div>
+</header>
