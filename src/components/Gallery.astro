@@ -5,7 +5,7 @@ const { images } = Astro.props;
 <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
   {images.map(im => (
     <button class="aspect-square overflow-hidden" data-lightbox-src={im.src} data-lightbox-alt={im.alt}>
-      <img src={im.src} alt={im.alt} class="w-full h-full object-cover hover:scale-105 transition" loading="lazy" />
+      <img src={im.src} alt={im.alt} class="w-full h-full object-cover hover:scale-105 transition" loading="lazy" decoding="async" />
     </button>
   ))}
 </div>

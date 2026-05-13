@@ -2,6 +2,7 @@
 // src/layouts/BaseLayout.astro
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ogDefault from '../assets/og-default.svg';
 import '../styles/global.css';
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
   lang: 'en' | 'fr' | 'zh';
   ogImage?: string;
 }
-const { title, description = '', lang, ogImage = '/images/og-default.jpg' } = Astro.props;
+const { title, description = '', lang, ogImage = ogDefault.src } = Astro.props;
 ---
 <!doctype html>
 <html lang={lang}>

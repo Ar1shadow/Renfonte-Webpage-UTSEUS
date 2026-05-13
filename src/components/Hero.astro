@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import heroImg from '../assets/hero-shanghai.svg';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 interface Props { lang: Lang; title: string; tagline: string; }
@@ -7,7 +9,7 @@ const t = useTranslations(lang);
 ---
 <section id="hero" class="relative isolate overflow-hidden bg-bg">
   <div class="absolute inset-0 -z-10">
-    <img src="/images/hero-shanghai.jpg" alt="" class="w-full h-full object-cover opacity-40" />
+    <Image src={heroImg} alt="" width={1920} height={1080} class="w-full h-full object-cover opacity-40" />
   </div>
   <div class="mx-auto max-w-6xl px-4 py-24 md:py-32">
     <h1 class="text-4xl md:text-6xl font-bold leading-tight">{title}</h1>
