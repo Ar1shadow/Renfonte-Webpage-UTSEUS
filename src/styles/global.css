@@ -1,11 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Placeholder tokens — Figma values overwrite these in T15 */
+  /* Placeholder tokens — Figma values overwrite these in real T15 pass after Zixuan delivers */
+
+  /* Colors */
   --color-bg: #ffffff;
-  --color-fg: #1a1a1a;
+  --color-fg: #121212;
   --color-accent: #c0142a;
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-accent-soft: #fde8eb;
+  --color-muted: #6b7280;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 body { background: var(--color-bg); color: var(--color-fg); }
