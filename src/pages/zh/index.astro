@@ -7,9 +7,11 @@ import KeyFiguresGrid from '../../components/KeyFiguresGrid.astro';
 import ProgramFilter from '../../components/ProgramFilter.astro';
 import ProjectModal from '../../components/ProjectModal.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
+import { useTranslations } from '../../i18n/utils';
 import { getEntry, render } from 'astro:content';
 
 const lang = 'zh' as const;
+const t = useTranslations(lang);
 const about = await getEntry('sections', `${lang}/01-about`);
 const mobility = await getEntry('sections', `${lang}/02-mobility`);
 const complexcity = await getEntry('sections', `${lang}/03-complexcity`);
@@ -22,29 +24,29 @@ const { Content: Projects } = await render(projects!);
 const { Content: Contact } = await render(contact!);
 ---
 <BaseLayout lang={lang} title="UTSEUS — 中法工程师学院" description="UTSEUS，首个位于上海大学的中法合作工程师学院。">
-  <Hero lang={lang} title="UTSEUS" tagline="首个位于上海大学的中法合作工程师学院" />
+  <Hero lang={lang} title={t('hero.title')} tagline={t('hero.tagline')} />
   <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-[200px_1fr] gap-8">
     <SidebarTOC lang={lang} />
     <div>
-      <SectionBlock id="about" title="关于">
+      <SectionBlock id="about" title={t('section.about.title')}>
         <KeyFiguresGrid lang={lang} />
         <About />
       </SectionBlock>
-      <SectionBlock id="mobility" title="交流项目">
+      <SectionBlock id="mobility" title={t('section.mobility.title')}>
         <Mobility />
         <ProgramFilter lang={lang} />
       </SectionBlock>
-      <SectionBlock id="complexcity" title="ComplexCity 实验室">
+      <SectionBlock id="complexcity" title={t('section.complexcity.title')}>
         <Complex />
       </SectionBlock>
-      <SectionBlock id="projects" title="14 个中法项目">
+      <SectionBlock id="projects" title={t('section.projects.title')}>
         <Projects />
         <ProjectModal lang={lang} />
       </SectionBlock>
-      <SectionBlock id="testimonials" title="学生反馈">
+      <SectionBlock id="testimonials" title={t('section.testimonials.title')}>
         <TestimonialCarousel lang={lang} />
       </SectionBlock>
-      <SectionBlock id="contact" title="联系">
+      <SectionBlock id="contact" title={t('section.contact.title')}>
         <Contact />
       </SectionBlock>
     </div>

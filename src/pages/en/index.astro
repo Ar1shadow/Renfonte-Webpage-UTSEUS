@@ -7,9 +7,11 @@ import KeyFiguresGrid from '../../components/KeyFiguresGrid.astro';
 import ProgramFilter from '../../components/ProgramFilter.astro';
 import ProjectModal from '../../components/ProjectModal.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
+import { useTranslations } from '../../i18n/utils';
 import { getEntry, render } from 'astro:content';
 
 const lang = 'en' as const;
+const t = useTranslations(lang);
 const about = await getEntry('sections', `${lang}/01-about`);
 const mobility = await getEntry('sections', `${lang}/02-mobility`);
 const complexcity = await getEntry('sections', `${lang}/03-complexcity`);
@@ -22,29 +24,29 @@ const { Content: Projects } = await render(projects!);
 const { Content: Contact } = await render(contact!);
 ---
 <BaseLayout lang={lang} title="UTSEUS — Sino-French Institute in Engineering" description="UTSEUS: the first Sino-French institute in engineering, based at Shanghai University.">
-  <Hero lang={lang} title="UTSEUS" tagline="First Sino-French institute in engineering" />
+  <Hero lang={lang} title={t('hero.title')} tagline={t('hero.tagline')} />
   <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-[200px_1fr] gap-8">
     <SidebarTOC lang={lang} />
     <div>
-      <SectionBlock id="about" title="About">
+      <SectionBlock id="about" title={t('section.about.title')}>
         <KeyFiguresGrid lang={lang} />
         <About />
       </SectionBlock>
-      <SectionBlock id="mobility" title="Mobility programs">
+      <SectionBlock id="mobility" title={t('section.mobility.title')}>
         <Mobility />
         <ProgramFilter lang={lang} />
       </SectionBlock>
-      <SectionBlock id="complexcity" title="ComplexCity Lab">
+      <SectionBlock id="complexcity" title={t('section.complexcity.title')}>
         <Complex />
       </SectionBlock>
-      <SectionBlock id="projects" title="14 Sino-French projects">
+      <SectionBlock id="projects" title={t('section.projects.title')}>
         <Projects />
         <ProjectModal lang={lang} />
       </SectionBlock>
-      <SectionBlock id="testimonials" title="Voices">
+      <SectionBlock id="testimonials" title={t('section.testimonials.title')}>
         <TestimonialCarousel lang={lang} />
       </SectionBlock>
-      <SectionBlock id="contact" title="Contact">
+      <SectionBlock id="contact" title={t('section.contact.title')}>
         <Contact />
       </SectionBlock>
     </div>

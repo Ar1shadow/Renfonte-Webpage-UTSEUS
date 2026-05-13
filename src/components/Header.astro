@@ -1,12 +1,11 @@
 ---
 // src/components/Header.astro
-// T8 will create src/i18n/ui.ts with the proper Lang type; until then use the
-// inline fallback below. The T8 implementer should swap this for:
-//   import type { Lang } from '../i18n/ui';
-type Lang = 'en' | 'fr' | 'zh';
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 import LangSwitcher from './LangSwitcher.astro';
 interface Props { lang?: Lang; }
 const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
 ---
 <header class="utc-header bg-bg border-b border-fg/10">
   <div class="mx-auto max-w-7xl flex items-center justify-between px-4 py-3">
@@ -15,17 +14,17 @@ const { lang = 'fr' } = Astro.props;
     </a>
     <nav aria-label="Main">
       <ul class="hidden md:flex gap-6 text-sm">
-        <li><a href="#about">About</a></li>
-        <li><a href="#mobility">Mobility</a></li>
-        <li><a href="#complexcity">Lab</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#testimonials">Voices</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">{t('nav.about')}</a></li>
+        <li><a href="#mobility">{t('nav.mobility')}</a></li>
+        <li><a href="#complexcity">{t('nav.complexcity')}</a></li>
+        <li><a href="#projects">{t('nav.projects')}</a></li>
+        <li><a href="#testimonials">{t('nav.testimonials')}</a></li>
+        <li><a href="#contact">{t('nav.contact')}</a></li>
       </ul>
     </nav>
     <div class="flex items-center gap-4">
       <LangSwitcher current={lang} />
-      <a href="/docs/brochure-utseus.pdf" class="hidden sm:inline-block px-3 py-1 bg-accent text-white text-sm rounded">Brochure</a>
+      <a href="/docs/brochure-utseus.pdf" class="hidden sm:inline-block px-3 py-1 bg-accent text-white text-sm rounded">{t('cta.brochure')}</a>
     </div>
   </div>
 </header>

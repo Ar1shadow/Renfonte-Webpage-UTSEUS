@@ -1,11 +1,14 @@
 ---
-interface Props { youtubeId: string; title: string; }
-const { youtubeId, title } = Astro.props;
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+interface Props { youtubeId: string; title: string; lang?: Lang; }
+const { youtubeId, title, lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
 const thumb = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
 ---
 <div class="relative aspect-video bg-fg/10 rounded overflow-hidden" data-yt={youtubeId}>
   <img src={thumb} alt={title} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-  <button class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl" aria-label={`Play ${title}`}>▶</button>
+  <button class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl" aria-label={`${t('video.play')} ${title}`}>▶</button>
 </div>
 <script>
   document.querySelectorAll('[data-yt]').forEach(el => {
