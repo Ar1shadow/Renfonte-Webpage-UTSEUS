@@ -1,0 +1,18 @@
+---
+import type { Lang } from '../i18n/ui';
+interface ProgramData {
+  audience: 'chinese-students' | 'french-students';
+  title: { en: string; fr: string; zh: string };
+  description: { en: string; fr: string; zh: string };
+  duration: string;
+  icon?: string;
+}
+interface Props { program: ProgramData; lang: Lang; }
+const { program, lang } = Astro.props;
+---
+<article class="p-6 rounded-md bg-bg shadow-card border border-fg/5 flex flex-col gap-3" data-audience={program.audience}>
+  {program.icon && <img src={program.icon} alt="" class="h-12" />}
+  <h3 class="text-xl font-bold">{program.title[lang]}</h3>
+  <p class="text-sm">{program.description[lang]}</p>
+  <p class="text-xs text-muted">⏱ {program.duration}</p>
+</article>

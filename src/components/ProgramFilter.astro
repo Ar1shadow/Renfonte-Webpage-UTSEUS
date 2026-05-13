@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import ProgramCard from './ProgramCard.astro';
+import type { Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const programs = await getCollection('programs');
+---
+<div class="space-y-6">
+  <div class="flex gap-2" role="tablist">
+    <button data-filter="all" aria-selected="true" class="px-3 py-1 rounded border border-fg/20">All</button>
+    <button data-filter="chinese-students" class="px-3 py-1 rounded border border-fg/20">For Chinese students</button>
+    <button data-filter="french-students" class="px-3 py-1 rounded border border-fg/20">For French students</button>
+  </div>
+  <div class="grid md:grid-cols-2 gap-6" id="programs-grid">
+    {programs.map(p => <ProgramCard program={p.data} lang={lang} />)}
+  </div>
+</div>
+<script>
+  const grid = document.getElementById('programs-grid')!;
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = (btn as HTMLElement).dataset.filter!;
+      document.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-selected', String(b === btn)));
+      grid.querySelectorAll<HTMLElement>('[data-audience]').forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.audience === f) ? '' : 'none';
+      });
+    });
+  });
+</script>
