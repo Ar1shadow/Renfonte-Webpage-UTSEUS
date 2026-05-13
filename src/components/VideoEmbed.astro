@@ -1,0 +1,17 @@
+---
+interface Props { youtubeId: string; title: string; }
+const { youtubeId, title } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
+---
+<div class="relative aspect-video bg-fg/10 rounded overflow-hidden" data-yt={youtubeId}>
+  <img src={thumb} alt={title} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+  <button class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl" aria-label={`Play ${title}`}>▶</button>
+</div>
+<script>
+  document.querySelectorAll('[data-yt]').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.getAttribute('data-yt');
+      el.innerHTML = `<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    });
+  });
+</script>
