@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 import mdx from '@astrojs/mdx';
 
+import sitemap from '@astrojs/sitemap';
+
 export default defineConfig({
   site: process.env.SITE_URL ?? 'https://www.utc.fr',
   base: process.env.BASE_PATH ?? '/',
@@ -30,5 +32,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
 });
