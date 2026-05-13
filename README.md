@@ -61,6 +61,13 @@ Drop `dist/` contents into the served directory. `.htaccess` handles:
 - cache headers
 - custom 404
 
+## Deploy targets
+
+- **GH Pages (fallback, ACTIVE):** Pushes to `main` trigger `.github/workflows/deploy.yml` → builds with `SITE_URL`/`BASE_PATH` for `https://ar1shadow.github.io/Renfonte-Webpage-UTSEUS/` → deploys via `actions/deploy-pages@v4`. One-time setup: repo Settings → Pages → Source = "GitHub Actions".
+- **UTC Apache (planned, gated on IT auth):** Drop `dist/` contents into served directory. `.htaccess` at `public/.htaccess` is included.
+
+Known issue (GH Pages subdir): root `/` meta-refresh redirects to bare `/fr/` instead of `/Renfonte-Webpage-UTSEUS/fr/` (Astro `redirects` config does not respect `base`). Several `public/` asset references (`/images/...`, `/docs/...`) and one hardcoded link in `404.astro` also lack the base prefix. Nav links and processed assets (`_astro/`, optimized images) are base-aware. Fix tracked separately.
+
 ## Timeline
 
 | Week | Dates | Milestone |
