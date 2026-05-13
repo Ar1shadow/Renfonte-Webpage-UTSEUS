@@ -1,0 +1,13 @@
+---
+import figures from '../data/key-figures.json';
+import type { Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+---
+<ul class="grid grid-cols-2 md:grid-cols-4 gap-6">
+  {figures.map(f => (
+    <li class="p-6 rounded bg-fg/5 text-center">
+      <div class="text-4xl font-bold text-accent">{f.value}</div>
+      <div class="mt-2 text-sm">{f.label[lang]}</div>
+    </li>
+  ))}
+</ul>

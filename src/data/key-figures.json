@@ -1,0 +1,6 @@
+[
+  { "value": "1200+", "label": { "en": "students per year", "fr": "étudiants par an", "zh": "在校学生每年" } },
+  { "value": "2005",  "label": { "en": "founded",            "fr": "fondé en",         "zh": "成立于" } },
+  { "value": "14",    "label": { "en": "research projects", "fr": "projets de recherche", "zh": "研究项目" } },
+  { "value": "5",     "label": { "en": "application areas", "fr": "domaines d'application", "zh": "应用领域" } }
+]
