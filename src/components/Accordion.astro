@@ -1,0 +1,15 @@
+---
+interface Item { title: string; body: string; }
+const { items } = Astro.props as { items: Item[] };
+---
+<div class="divide-y divide-fg/10">
+  {items.map(it => (
+    <details class="py-3 group">
+      <summary class="cursor-pointer font-bold flex justify-between items-center">
+        <span>{it.title}</span>
+        <span class="group-open:rotate-45 transition">+</span>
+      </summary>
+      <div class="mt-2 text-sm">{it.body}</div>
+    </details>
+  ))}
+</div>
