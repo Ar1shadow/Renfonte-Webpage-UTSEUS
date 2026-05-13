@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "slug": "engineering-chinese",
+    "audience": "chinese-students",
+    "title": { "en": "Engineering program (Chinese students)", "fr": "Programme ingénieur (étudiants chinois)", "zh": "工程师项目（中国学生）" },
+    "description": { "en": "Joint UT-engineering training for Chinese students.", "fr": "Formation d'ingénieur UT pour étudiants chinois.", "zh": "面向中国学生的UT工程师培养。" },
+    "duration": "5 yrs",
+    "icon": "/images/icons/engineering.svg"
+  },
+  {
+    "slug": "sciences-humanities",
+    "audience": "french-students",
+    "title": { "en": "Sciences & Humanities in China", "fr": "Sciences et Humanités en Chine", "zh": "中国科学与人文学期" },
+    "description": { "en": "Exchange semester for French students.", "fr": "Semestre d'échange pour étudiants français.", "zh": "面向法国学生的交流学期。" },
+    "duration": "1 sem",
+    "icon": "/images/icons/humanities.svg"
+  },
+  {
+    "slug": "international-engineer",
+    "audience": "french-students",
+    "title": { "en": "International Engineer", "fr": "Ingénieur international", "zh": "国际工程师" },
+    "description": { "en": "Engineering exchange semester.", "fr": "Semestre d'échange ingénieur.", "zh": "工程师交流学期。" },
+    "duration": "1 sem",
+    "icon": "/images/icons/intl.svg"
+  },
+  {
+    "slug": "language-culture",
+    "audience": "french-students",
+    "title": { "en": "Language, culture & innovation", "fr": "Langue, culture et innovation", "zh": "语言、文化与创新" },
+    "description": { "en": "Immersion semester.", "fr": "Semestre d'immersion.", "zh": "沉浸式学期。" },
+    "duration": "1 sem",
+    "icon": "/images/icons/language.svg"
+  }
+]

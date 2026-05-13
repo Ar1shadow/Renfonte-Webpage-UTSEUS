@@ -1,1 +1,5 @@
-[]
+[
+  { "id": "alice-martin",   "name": "Alice Martin",   "promo": "GI06",      "program": "International Engineer",         "photo": "/images/people/alice.jpg",   "quote": { "en": "TODO", "fr": "TODO", "zh": "TODO" }, "year": 2024 },
+  { "id": "liu-wei",        "name": "Liu Wei",        "promo": "UTSEUS22",  "program": "Engineering program",            "photo": "/images/people/liu.jpg",     "quote": { "en": "TODO", "fr": "TODO", "zh": "TODO" }, "year": 2024 },
+  { "id": "camille-dubois", "name": "Camille Dubois", "promo": "TC04",      "program": "Language, culture & innovation", "photo": "/images/people/camille.jpg", "quote": { "en": "TODO", "fr": "TODO", "zh": "TODO" }, "year": 2025 }
+]
