@@ -26,7 +26,7 @@ const projectsData = projects.map(p => p.data);
   if (dlg && close) {
     close.addEventListener('click', () => dlg.close());
     document.querySelectorAll('[data-project]').forEach(card => {
-      card.addEventListener('click', () => {
+      const open = () => {
         const slug = card.getAttribute('data-project');
         const p = projectsData.find(x => x.slug === slug);
         if (!p) return;
@@ -47,6 +47,13 @@ const projectsData = projects.map(p => p.data);
           li.appendChild(a); linksEl.appendChild(li);
         });
         dlg.showModal();
+      };
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open();
+        }
       });
     });
   }

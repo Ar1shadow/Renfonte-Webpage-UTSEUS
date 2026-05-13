@@ -11,10 +11,10 @@ interface ProjectData {
 interface Props { project: ProjectData; lang: Lang; }
 const { project, lang } = Astro.props;
 ---
-<article class="group rounded overflow-hidden bg-bg shadow-card cursor-pointer" data-project={project.slug}>
+<div class="group rounded overflow-hidden bg-bg shadow-card cursor-pointer" data-project={project.slug} tabindex="0" role="button" aria-label={project.title[lang]}>
   <img src={project.image} alt="" class="aspect-video object-cover w-full" loading="lazy" decoding="async" />
   <div class="p-4">
     <p class="text-xs uppercase tracking-wide text-accent">{project.axis}</p>
     <h3 class="text-lg font-bold mt-1">{project.title[lang]}</h3>
   </div>
-</article>
+</div>
