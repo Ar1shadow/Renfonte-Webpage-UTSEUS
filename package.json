@@ -12,7 +12,8 @@
     "astro": "astro",
     "check": "astro check",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "audit:links": "node scripts/audit-links.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@types/node": "^25.7.0",
+    "glob": "^13.0.6",
     "typescript": "^6.0.3",
     "vitest": "^4.1.6"
   }

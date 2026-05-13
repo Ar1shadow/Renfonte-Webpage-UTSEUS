@@ -1,0 +1,15 @@
+[
+  {
+    "url": "https://www.utc.fr/fr/",
+    "status": 404
+  },
+  {
+    "url": "https://www.utc.fr",
+    "status": 200
+  },
+  {
+    "url": "https://en.utseus.com",
+    "status": "ERR",
+    "error": "TypeError: fetch failed"
+  }
+]
