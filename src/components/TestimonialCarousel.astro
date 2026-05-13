@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const items = await getCollection('testimonials');
+---
+<div class="relative">
+  <ol class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 scroll-smooth" aria-label="Student testimonials">
+    {items.map(t => (
+      <li class="snap-start shrink-0 w-[80vw] md:w-[480px] p-6 bg-bg shadow-card rounded">
+        <div class="flex items-center gap-3 mb-3">
+          <img src={t.data.photo} alt="" class="w-12 h-12 rounded-full object-cover" />
+          <div>
+            <p class="font-bold">{t.data.name}</p>
+            <p class="text-xs text-muted">{t.data.promo} · {t.data.program} · {t.data.year}</p>
+          </div>
+        </div>
+        <blockquote class="italic">«{t.data.quote[lang]}»</blockquote>
+      </li>
+    ))}
+  </ol>
+</div>
