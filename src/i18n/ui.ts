@@ -11,6 +11,7 @@ export const ui = {
     'nav.testimonials': 'Témoignages',
     'nav.contact': 'Contact',
     'cta.brochure': 'Brochure',
+    'cta.discover': 'Découvrir →',
   },
   en: {
     'nav.about': 'About',
@@ -20,6 +21,7 @@ export const ui = {
     'nav.testimonials': 'Voices',
     'nav.contact': 'Contact',
     'cta.brochure': 'Brochure',
+    'cta.discover': 'Discover →',
   },
   zh: {
     'nav.about': '关于',
@@ -29,5 +31,6 @@ export const ui = {
     'nav.testimonials': '学生反馈',
     'nav.contact': '联系',
     'cta.brochure': '宣传册',
+    'cta.discover': '了解更多 →',
   },
 } satisfies Record<Lang, Record<string, string>>;

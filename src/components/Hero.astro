@@ -1,0 +1,20 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+interface Props { lang: Lang; title: string; tagline: string; }
+const { lang, title, tagline } = Astro.props;
+const t = useTranslations(lang);
+---
+<section id="hero" class="relative isolate overflow-hidden bg-bg">
+  <div class="absolute inset-0 -z-10">
+    <img src="/images/hero-shanghai.jpg" alt="" class="w-full h-full object-cover opacity-40" />
+  </div>
+  <div class="mx-auto max-w-6xl px-4 py-24 md:py-32">
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight">{title}</h1>
+    <p class="mt-4 text-lg md:text-xl max-w-2xl">{tagline}</p>
+    <div class="mt-8 flex gap-4">
+      <a href="#about" class="px-5 py-3 bg-accent text-white rounded">{t('cta.discover')}</a>
+      <a href="/docs/brochure-utseus.pdf" class="px-5 py-3 border border-fg rounded">{t('cta.brochure')}</a>
+    </div>
+  </div>
+</section>
