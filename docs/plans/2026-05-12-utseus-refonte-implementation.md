@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a static, multilingual (EN/FR/ZH), Astro-powered refonte of the UTSEUS subpage, deployable as a `dist/` drop on UTC Apache (fallback GH Pages).
+**Goal:** Build a static, multilingual (EN/FR/ZH), Astro-powered refonte of the UTSEUS subpage, deployable as a `dist/` drop on UTC Apache. Fallback for course demo: local `npm run preview`.
 
 **Architecture:** Astro 5 + MDX content collections + JSON data collections + Tailwind. File-based i18n routing under `/en/`, `/fr/`, `/zh/`. Header/footer cloned from UTC original. Static build, no runtime backend.
 
@@ -1923,20 +1923,21 @@ git commit -m "feat(deploy): .htaccess + 404 page (T31)"
 
 ---
 
-### Task 32: Deploy attempt + fallback
+### Task 32: Deploy attempt + local fallback
 
 **Files:** none (operational)
+
+GH Pages was evaluated but ruled out (subpath base-prefix complications + course context favors local/institutional hosting). Two paths only: UTC SFTP, or local `npm run preview` for demo.
 
 - [ ] **Step 1: Build production**
 
 ```bash
-npm run build
+SITE_URL=https://<utc-host-or-subdomain> npm run build
 zip -r dist.zip dist
 ```
 
-- [ ] **Step 2: UTC server deploy attempt**
+- [ ] **Step 2 (if UTC IT auth granted): UTC server deploy via SFTP**
 
-If UTC IT granted SFTP access by 2026-06-15:
 ```bash
 sftp <user>@<utc-host>
 > cd <served-path>
@@ -1944,37 +1945,38 @@ sftp <user>@<utc-host>
 > quit
 ```
 
-Verify in browser: visit live URL.
+Verify in browser: visit live URL. Confirm `/` redirects to `/fr/`, all 3 locales render, `_astro/` assets load.
 
-- [ ] **Step 3: If UTC denied — fallback to GH Pages**
-
-```bash
-git checkout --orphan gh-pages
-git reset
-npm run build
-cp -r dist/* .
-git add -A && git commit -m "deploy: gh-pages build"
-git push -u origin gh-pages
-```
-
-In GitHub repo → Settings → Pages → source: `gh-pages` branch, `/ (root)`. Verify URL within 5 min.
-
-Note: GH Pages path may need `base: '/Renfonte-Webpage-UTSEUS/'` in `astro.config.mjs` if served at repo subpath.
-
-- [ ] **Step 4: Re-verify on live**
+- [ ] **Step 3 (if UTC auth NOT granted): local preview fallback for demo**
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" <live-url>/fr/
+npm run build && npm run preview
+# serves http://localhost:4321/
 ```
 
+Open http://localhost:4321/ in browser → auto-redirects to `/fr/`. Switch locales via header lang switcher to confirm `/en/` and `/zh/`. For demo: screen-record the walkthrough; embed in `docs/demo/walkthrough.mp4`.
+
+- [ ] **Step 4: Re-verify**
+
+For UTC live URL:
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" https://<live-url>/fr/
+```
 Expected: 200.
 
-- [ ] **Step 5: Commit deploy artifacts (NOT the dist itself)**
+For local preview:
+```bash
+curl -sI http://localhost:4321/fr/ | head -3
+```
+Expected: HTTP 200.
+
+- [ ] **Step 5: Commit deploy evidence**
+
+Save deploy screenshot to `docs/demo/deploy-evidence.png` (live UTC URL OR local preview window). Commit:
 
 ```bash
-git checkout main
-git add docs/plans/2026-05-12-utseus-refonte-implementation.md
-git commit --allow-empty -m "deploy: live (T32) — see release notes"
+git add docs/demo/deploy-evidence.png
+git commit -m "deploy: live or local-preview evidence (T32)"
 ```
 
 ---

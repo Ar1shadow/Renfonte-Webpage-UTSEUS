@@ -15,7 +15,7 @@
 - Add full i18n: English, French, Chinese.
 - Fix broken links from current site.
 - Enrich with media (images, videos, diagrams).
-- Tentative deploy on UTC server (pending IT authorization). Fallback: GitHub Pages / Netlify.
+- Tentative deploy on UTC server (pending IT authorization). Fallback for course demo: local `npm run preview` (no public URL needed).
 
 ## 2. Non-Goals
 
@@ -199,7 +199,7 @@ export const collections = { sections, projects, testimonials, programs };
   - gzip + brotli
   - cache headers for static assets
   - custom 404 page
-- **Fallback:** GitHub Pages or Netlify free tier. Decision deadline: 2026-06-15 (W6 start). If UTC auth not granted by then, switch to fallback.
+- **Fallback for course demo:** local `npm run preview` running on Pengcheng's machine, screen-recorded for demo slides. No public URL required for academic evaluation. GH Pages was evaluated but ruled out (subpath base-prefix complications + course context).
 
 ### 7.3 CI
 
@@ -254,7 +254,7 @@ Today: 2026-05-12. End: 2026-06-22. ~6 weeks.
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| UTC IT denies / delays server access | Medium | Medium | Fallback GH Pages ready by 2026-06-15 |
+| UTC IT denies / delays server access | Medium | Low | Fallback = local `npm run preview` for demo; no public URL required for course evaluation |
 | ZH translation quality | Medium | Low | Use Pengcheng native review + Yang for tone |
 | Maquette slip past 06-01 | Medium | High | Lock IA first, design tokens early, parallel dev on shells |
 | Content writing slip | Medium | Medium | Yang starts narrative outline W1, not blocked by maquettes |

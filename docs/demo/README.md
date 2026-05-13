@@ -5,7 +5,7 @@ Place final demo deliverables here:
 - `slides.pdf` — presentation slides (Zixuan + Yang lead, Pengcheng provides build/deploy screenshots)
 - `walkthrough.mp4` — recorded demo (max 5 min, captures: home in fr/en/zh, lang switcher, project modal, testimonials carousel, mobile responsiveness)
 - `lighthouse-final.png` — Lighthouse score screenshot
-- `deploy-evidence.png` — screenshot of live URL on UTC server (or GH Pages)
+- `deploy-evidence.png` — screenshot of live URL on UTC server (or local `npm run preview` if UTC auth not granted)
 
 Generated:
 - `tmp/lighthouse-summary.md` — auto-generated Lighthouse baseline (T28)

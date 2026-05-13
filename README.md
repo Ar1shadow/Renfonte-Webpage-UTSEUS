@@ -52,21 +52,12 @@ npm run preview    # preview built site locally
 
 ## Deploy
 
-Primary: UTC Apache server (pending IT authorization).
-Fallback: GitHub Pages / Netlify if UTC access not granted by 2026-06-15.
+Two paths:
 
-Drop `dist/` contents into the served directory. `.htaccess` handles:
-- `/` → `/fr/` redirect
-- gzip + brotli
-- cache headers
-- custom 404
+1. **UTC Apache server (primary, gated on IT auth)** — `npm run build`, then upload `dist/` contents to served directory via SFTP. `public/.htaccess` (shipped in `dist/`) handles `/` → `/fr/` redirect, gzip, cache headers, security headers, custom 404.
+2. **Local browser demo (always works, fallback for presentations)** — `npm run build && npm run preview` serves the production build at http://localhost:4321/. Capture screen recording for demo slides.
 
-## Deploy targets
-
-- **GH Pages (fallback, ACTIVE):** Pushes to `main` trigger `.github/workflows/deploy.yml` → builds with `SITE_URL`/`BASE_PATH` for `https://ar1shadow.github.io/Renfonte-Webpage-UTSEUS/` → deploys via `actions/deploy-pages@v4`. One-time setup: repo Settings → Pages → Source = "GitHub Actions".
-- **UTC Apache (planned, gated on IT auth):** Drop `dist/` contents into served directory. `.htaccess` at `public/.htaccess` is included.
-
-Known issue (GH Pages subdir): root `/` meta-refresh redirects to bare `/fr/` instead of `/Renfonte-Webpage-UTSEUS/fr/` (Astro `redirects` config does not respect `base`). Several `public/` asset references (`/images/...`, `/docs/...`) and one hardcoded link in `404.astro` also lack the base prefix. Nav links and processed assets (`_astro/`, optimized images) are base-aware. Fix tracked separately.
+GH Pages was evaluated but ruled out (subpath base-prefix complications + course context preferring local/institutional hosting).
 
 ## Timeline
 
