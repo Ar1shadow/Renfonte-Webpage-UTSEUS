@@ -1,0 +1,28 @@
+---
+interface Props { images: { src: string; alt: string }[]; }
+const { images } = Astro.props;
+---
+<div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+  {images.map(im => (
+    <button class="aspect-square overflow-hidden" data-lightbox-src={im.src} data-lightbox-alt={im.alt}>
+      <img src={im.src} alt={im.alt} class="w-full h-full object-cover hover:scale-105 transition" loading="lazy" />
+    </button>
+  ))}
+</div>
+<dialog id="lightbox" class="bg-transparent p-0 backdrop:bg-black/80">
+  <img id="lightbox-img" alt="" class="max-w-[90vw] max-h-[90vh]" />
+</dialog>
+<script>
+  const dlg = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const img = document.getElementById('lightbox-img') as HTMLImageElement | null;
+  if (dlg && img) {
+    document.querySelectorAll('[data-lightbox-src]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        img.src = btn.getAttribute('data-lightbox-src') || '';
+        img.alt = btn.getAttribute('data-lightbox-alt') || '';
+        dlg.showModal();
+      });
+    });
+    dlg.addEventListener('click', () => dlg.close());
+  }
+</script>
