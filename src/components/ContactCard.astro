@@ -1,0 +1,12 @@
+---
+interface Props { name: string; role: string; email: string; photo?: string; }
+const { name, role, email, photo } = Astro.props;
+---
+<article class="p-5 rounded bg-bg shadow-card flex gap-4 items-center">
+  {photo && <img src={photo} alt="" class="w-16 h-16 rounded-full object-cover" />}
+  <div>
+    <p class="font-bold">{name}</p>
+    <p class="text-sm text-muted">{role}</p>
+    <a href={`mailto:${email}`} class="text-sm text-accent underline">{email}</a>
+  </div>
+</article>
