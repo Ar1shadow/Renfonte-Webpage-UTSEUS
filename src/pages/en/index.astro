@@ -1,6 +1,52 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import SectionBlock from '../../components/SectionBlock.astro';
+import SidebarTOC from '../../components/SidebarTOC.astro';
+import KeyFiguresGrid from '../../components/KeyFiguresGrid.astro';
+import ProgramFilter from '../../components/ProgramFilter.astro';
+import ProjectModal from '../../components/ProjectModal.astro';
+import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
+import { getEntry, render } from 'astro:content';
+
+const lang = 'en' as const;
+const about = await getEntry('sections', `${lang}/01-about`);
+const mobility = await getEntry('sections', `${lang}/02-mobility`);
+const complexcity = await getEntry('sections', `${lang}/03-complexcity`);
+const projects = await getEntry('sections', `${lang}/04-projects`);
+const contact = await getEntry('sections', `${lang}/05-contact`);
+const { Content: About } = await render(about!);
+const { Content: Mobility } = await render(mobility!);
+const { Content: Complex } = await render(complexcity!);
+const { Content: Projects } = await render(projects!);
+const { Content: Contact } = await render(contact!);
 ---
-<BaseLayout lang="en" title="UTSEUS — Sino-French Institute in Engineering" description="UTSEUS, the first Sino-French institute in engineering, based at Shanghai University.">
-  <h1 class="text-3xl p-8">UTSEUS — coming soon</h1>
+<BaseLayout lang={lang} title="UTSEUS — Sino-French Institute in Engineering" description="UTSEUS: the first Sino-French institute in engineering, based at Shanghai University.">
+  <Hero lang={lang} title="UTSEUS" tagline="First Sino-French institute in engineering" />
+  <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-[200px_1fr] gap-8">
+    <SidebarTOC lang={lang} />
+    <div>
+      <SectionBlock id="about" title="About">
+        <KeyFiguresGrid lang={lang} />
+        <About />
+      </SectionBlock>
+      <SectionBlock id="mobility" title="Mobility programs">
+        <Mobility />
+        <ProgramFilter lang={lang} />
+      </SectionBlock>
+      <SectionBlock id="complexcity" title="ComplexCity Lab">
+        <Complex />
+      </SectionBlock>
+      <SectionBlock id="projects" title="14 Sino-French projects">
+        <Projects />
+        <ProjectModal lang={lang} />
+      </SectionBlock>
+      <SectionBlock id="testimonials" title="Voices">
+        <TestimonialCarousel lang={lang} />
+      </SectionBlock>
+      <SectionBlock id="contact" title="Contact">
+        <Contact />
+      </SectionBlock>
+    </div>
+  </div>
 </BaseLayout>

@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import mdx from '@astrojs/mdx';
+
 export default defineConfig({
   site: process.env.SITE_URL ?? 'https://www.utc.fr',
   base: process.env.BASE_PATH ?? '/',
@@ -27,4 +29,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
+  integrations: [mdx()],
 });

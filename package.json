@@ -15,6 +15,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@astrojs/mdx": "^5.0.4",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.1",
     "tailwindcss": "^4.3.0"
