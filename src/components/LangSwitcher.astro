@@ -1,0 +1,15 @@
+---
+import { buildSwitcherTargets } from '../i18n/utils';
+import { languages, type Lang } from '../i18n/ui';
+const { current } = Astro.props as { current: Lang };
+const path = Astro.url.pathname + Astro.url.search + Astro.url.hash;
+const targets = buildSwitcherTargets(path);
+---
+<div class="relative group">
+  <button class="text-sm">🌐 {languages[current]}</button>
+  <ul class="absolute right-0 hidden group-hover:block bg-bg border border-fg/10 rounded shadow p-2">
+    {targets.map(t => (
+      <li><a href={t.url} class={t.lang === current ? 'font-bold' : ''}>{languages[t.lang]}</a></li>
+    ))}
+  </ul>
+</div>

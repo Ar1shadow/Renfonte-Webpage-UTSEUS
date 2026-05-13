@@ -4,6 +4,7 @@
 // inline fallback below. The T8 implementer should swap this for:
 //   import type { Lang } from '../i18n/ui';
 type Lang = 'en' | 'fr' | 'zh';
+import LangSwitcher from './LangSwitcher.astro';
 interface Props { lang?: Lang; }
 const { lang = 'fr' } = Astro.props;
 ---
@@ -23,8 +24,7 @@ const { lang = 'fr' } = Astro.props;
       </ul>
     </nav>
     <div class="flex items-center gap-4">
-      {/* T14: replace this placeholder with <LangSwitcher current={lang} /> */}
-      <span class="text-sm" aria-label="Language">🌐 {lang.toUpperCase()}</span>
+      <LangSwitcher current={lang} />
       <a href="/docs/brochure-utseus.pdf" class="hidden sm:inline-block px-3 py-1 bg-accent text-white text-sm rounded">Brochure</a>
     </div>
   </div>

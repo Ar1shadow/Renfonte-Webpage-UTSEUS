@@ -1,4 +1,4 @@
-import { ui, defaultLang, type Lang } from './ui';
+import { ui, defaultLang, languages, type Lang } from './ui';
 
 export function getLangFromUrl(url: URL): Lang {
   const [, seg] = url.pathname.split('/');
@@ -14,4 +14,11 @@ export function useTranslations(lang: Lang) {
 
 export function switchLangUrl(pathWithHashQuery: string, target: Lang): string {
   return pathWithHashQuery.replace(/^\/(en|fr|zh)(\/|$)/, `/${target}$2`);
+}
+
+export function buildSwitcherTargets(pathWithHashQuery: string) {
+  return (Object.keys(languages) as Lang[]).map(l => ({
+    lang: l,
+    url: switchLangUrl(pathWithHashQuery, l),
+  })).sort((a, b) => (['fr','en','zh'].indexOf(a.lang) - ['fr','en','zh'].indexOf(b.lang)));
 }
