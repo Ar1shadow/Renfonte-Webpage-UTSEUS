@@ -5,11 +5,54 @@ const { current } = Astro.props as { current: Lang };
 const path = Astro.url.pathname + Astro.url.search + Astro.url.hash;
 const targets = buildSwitcherTargets(path);
 ---
-<div class="relative group">
-  <button class="text-sm">🌐 {languages[current]}</button>
-  <ul class="absolute right-0 hidden group-hover:block bg-bg border border-fg/10 rounded shadow p-2">
+<div class="language-menu">
+  <button class="language-menu__button" type="button" aria-haspopup="true" aria-expanded="false" data-lang-trigger>
+    <span class="language-menu__icon" aria-hidden="true">◎</span>
+    <span>{languages[current]}</span>
+    <span class="language-menu__chevron" aria-hidden="true">⌄</span>
+  </button>
+  <ul class="language-menu__list" data-lang-menu>
     {targets.map(t => (
-      <li><a href={t.url} class={t.lang === current ? 'font-bold' : ''}>{languages[t.lang]}</a></li>
+      <li>
+        <a
+          href={t.url}
+          class:list={[
+            'language-menu__link',
+            t.lang === current && 'language-menu__link--active',
+          ]}
+          aria-current={t.lang === current ? 'page' : undefined}
+        >
+          <span class="language-menu__code">{t.lang.toUpperCase()}</span>
+          <span>{languages[t.lang]}</span>
+        </a>
+      </li>
     ))}
   </ul>
 </div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.language-menu').forEach((menu) => {
+    const trigger = menu.querySelector<HTMLButtonElement>('[data-lang-trigger]');
+    const list = menu.querySelector<HTMLElement>('[data-lang-menu]');
+    if (!trigger || !list) return;
+
+    const close = () => {
+      menu.dataset.open = 'false';
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+
+    trigger.addEventListener('click', () => {
+      const open = menu.dataset.open === 'true';
+      menu.dataset.open = String(!open);
+      trigger.setAttribute('aria-expanded', String(!open));
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!menu.contains(event.target as Node)) close();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') close();
+    });
+  });
+</script>

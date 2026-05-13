@@ -2,33 +2,61 @@
   {
     "slug": "engineering-chinese",
     "audience": "chinese-students",
-    "title": { "en": "Engineering program (Chinese students)", "fr": "Programme ingénieur (étudiants chinois)", "zh": "工程师项目（中国学生）" },
-    "description": { "en": "Joint UT-engineering training for Chinese students.", "fr": "Formation d'ingénieur UT pour étudiants chinois.", "zh": "面向中国学生的UT工程师培养。" },
-    "duration": "5 yrs",
-    "icon": "/images/icons/engineering.svg"
+    "title": {
+      "en": "Engineering programme for Chinese students",
+      "fr": "Programme ingénieur pour étudiants chinois",
+      "zh": "面向中国学生的工程师项目"
+    },
+    "description": {
+      "en": "Three years in Shanghai followed by a selective two-year pathway in one of the French Universities of Technology, leading to a double engineering degree.",
+      "fr": "Trois années à Shanghai, puis un parcours sélectif de deux ans dans l’une des universités de technologie françaises pour obtenir un double diplôme d’ingénieur.",
+      "zh": "学生先在上海完成三年学习，再通过选拔赴法国三所技术大学之一学习两年，获得中法双工程师培养经历。"
+    },
+    "duration": "5 years"
   },
   {
     "slug": "sciences-humanities",
     "audience": "french-students",
-    "title": { "en": "Sciences & Humanities in China", "fr": "Sciences et Humanités en Chine", "zh": "中国科学与人文学期" },
-    "description": { "en": "Exchange semester for French students.", "fr": "Semestre d'échange pour étudiants français.", "zh": "面向法国学生的交流学期。" },
-    "duration": "1 sem",
-    "icon": "/images/icons/humanities.svg"
+    "title": {
+      "en": "Sciences and Humanities in China",
+      "fr": "Sciences et humanités en Chine",
+      "zh": "中国科学与人文学期"
+    },
+    "description": {
+      "en": "An exchange semester for second-year UT students who want a first international experience while studying alongside Chinese students.",
+      "fr": "Un semestre d’échange pour les étudiants de deuxième année du réseau UT souhaitant vivre une première expérience internationale avec des étudiants chinois.",
+      "zh": "面向法国 UT 二年级学生的交流学期，帮助他们在与中国学生共同学习中获得第一次国际经历。"
+    },
+    "duration": "1 semester"
   },
   {
     "slug": "international-engineer",
     "audience": "french-students",
-    "title": { "en": "International Engineer", "fr": "Ingénieur international", "zh": "国际工程师" },
-    "description": { "en": "Engineering exchange semester.", "fr": "Semestre d'échange ingénieur.", "zh": "工程师交流学期。" },
-    "duration": "1 sem",
-    "icon": "/images/icons/intl.svg"
+    "title": {
+      "en": "International Engineer",
+      "fr": "Ingénieur international",
+      "zh": "国际工程师学期"
+    },
+    "description": {
+      "en": "A Master-level semester built around professional courses, company projects and meetings with expatriate engineers in Shanghai.",
+      "fr": "Un semestre de niveau master articulé autour de cours professionnalisants, de projets en entreprise et de rencontres avec des ingénieurs expatriés à Shanghai.",
+      "zh": "面向硕士阶段学生的学期项目，结合专业课程、企业项目以及与在沪工程师的交流。"
+    },
+    "duration": "1 semester"
   },
   {
     "slug": "language-culture",
     "audience": "french-students",
-    "title": { "en": "Language, culture & innovation", "fr": "Langue, culture et innovation", "zh": "语言、文化与创新" },
-    "description": { "en": "Immersion semester.", "fr": "Semestre d'immersion.", "zh": "沉浸式学期。" },
-    "duration": "1 sem",
-    "icon": "/images/icons/language.svg"
+    "title": {
+      "en": "Language, culture and innovation",
+      "fr": "Langue, culture et innovation",
+      "zh": "语言、文化与创新"
+    },
+    "description": {
+      "en": "A multidisciplinary immersion semester for students and young professionals interested in innovation for smart and connected cities.",
+      "fr": "Un semestre d’immersion pluridisciplinaire pour étudiants et jeunes professionnels autour de l’innovation dans les villes intelligentes et connectées.",
+      "zh": "面向不同学科背景学生与青年专业人士的沉浸式学期，主题聚焦智慧互联城市中的创新。"
+    },
+    "duration": "1 semester"
   }
 ]

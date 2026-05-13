@@ -12,21 +12,35 @@ const items = [
   { id: 'contact', label: t('nav.contact') },
 ];
 ---
-<nav aria-label="On-page" class="hidden lg:block sticky top-24 max-h-[80vh] overflow-y-auto pr-4">
-  <ul class="space-y-2 text-sm">
-    {items.map(it => (
-      <li><a data-toc href={`#${it.id}`} class="text-fg/70 hover:text-accent">{it.label}</a></li>
-    ))}
-  </ul>
-</nav>
+<aside class="page-rail" aria-label="On-page navigation">
+  <p class="page-rail__eyebrow">Page</p>
+  <nav>
+    <ol class="page-rail__list">
+      {items.map((it, index) => (
+        <li>
+          <a data-toc href={`#${it.id}`} class="page-rail__link">
+            <span class="page-rail__number">{String(index + 1).padStart(2, '0')}</span>
+            <span class="page-rail__dot" aria-hidden="true"></span>
+            <span class="page-rail__label">{it.label}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+</aside>
 <script>
-  const links = document.querySelectorAll('[data-toc]');
+  const links = document.querySelectorAll<HTMLElement>('[data-toc]');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        links.forEach(l => l.classList.toggle('text-accent', l.getAttribute('href') === `#${e.target.id}`));
+        links.forEach(l => {
+          const active = l.getAttribute('href') === `#${e.target.id}`;
+          l.classList.toggle('page-rail__link--active', active);
+          if (active) l.setAttribute('aria-current', 'true');
+          else l.removeAttribute('aria-current');
+        });
       }
     });
-  }, { rootMargin: '-40% 0px -55% 0px' });
+  }, { rootMargin: '-35% 0px -55% 0px' });
   document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
 </script>
