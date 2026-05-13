@@ -84,6 +84,7 @@ Known issue (GH Pages subdir): root `/` meta-refresh redirects to bare `/fr/` in
 - Design spec: [`docs/specs/2026-05-12-utseus-refonte-design.md`](docs/specs/2026-05-12-utseus-refonte-design.md)
 - Ownership: [`OWNERS.md`](OWNERS.md)
 - Link audit: [`data/links-audit.csv`](data/links-audit.csv)
+- Content edit guide: [`docs/CONTENT_EDIT_GUIDE.md`](docs/CONTENT_EDIT_GUIDE.md)
 
 ## License
 
