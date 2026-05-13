@@ -16,9 +16,12 @@ export default defineConfig({
     locales: ['fr', 'en', 'zh'],
     routing: {
       prefixDefaultLocale: true,
-      redirectToDefaultLocale: true,
+      // redirectToDefaultLocale not needed: `redirects: { '/': '/fr/' }` above
+      // already handles the static-build root redirect with delay=0.
     },
-    fallback: { en: 'fr', zh: 'fr' },
+    // No `fallback` — every locale ships its own explicit pages from T9 onward.
+    // Astro's fallback emitter would otherwise pre-empt explicit pages and
+    // produce empty bodies (e.g. /zh).
   },
 
   vite: {
