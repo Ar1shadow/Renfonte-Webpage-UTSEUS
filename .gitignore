@@ -38,5 +38,9 @@ Thumbs.db
 coverage/
 .cache/
 
+# lighthouse raw reports (large, ephemeral)
+tmp/lh-*.json
+tmp/lh-*.html
+
 # claude code
 .claude/
