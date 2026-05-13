@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import type { Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const projects = await getCollection('projects');
+const projectsData = projects.map(p => p.data);
+---
+<div class="grid md:grid-cols-3 gap-6">
+  {projects.map(p => <ProjectCard project={p.data} lang={lang} />)}
+</div>
+
+<dialog id="project-dialog" class="rounded-md p-0 backdrop:bg-black/40 max-w-2xl w-[90vw]">
+  <article class="p-6">
+    <button id="dialog-close" class="float-right text-xl" aria-label="Close">×</button>
+    <img id="dialog-image" alt="" class="w-full aspect-video object-cover rounded" />
+    <h3 id="dialog-title" class="text-2xl font-bold mt-4"></h3>
+    <p id="dialog-desc" class="mt-2 text-base"></p>
+    <ul id="dialog-links" class="mt-4 text-sm"></ul>
+  </article>
+</dialog>
+
+<script define:vars={{ projectsData, lang }}>
+  const dlg = /** @type {HTMLDialogElement} */ (document.getElementById('project-dialog'));
+  const close = document.getElementById('dialog-close');
+  if (dlg && close) {
+    close.addEventListener('click', () => dlg.close());
+    document.querySelectorAll('[data-project]').forEach(card => {
+      card.addEventListener('click', () => {
+        const slug = card.getAttribute('data-project');
+        const p = projectsData.find(x => x.slug === slug);
+        if (!p) return;
+        const img = /** @type {HTMLImageElement} */ (document.getElementById('dialog-image'));
+        const title = document.getElementById('dialog-title');
+        const desc = document.getElementById('dialog-desc');
+        const linksEl = document.getElementById('dialog-links');
+        if (!img || !title || !desc || !linksEl) return;
+        img.src = p.image;
+        title.textContent = p.title[lang];
+        desc.textContent = p.description[lang];
+        linksEl.innerHTML = '';
+        (p.links || []).forEach(l => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = l.url; a.textContent = l.label; a.className = 'text-accent underline';
+          a.rel = 'noopener'; a.target = '_blank';
+          li.appendChild(a); linksEl.appendChild(li);
+        });
+        dlg.showModal();
+      });
+    });
+  }
+</script>
