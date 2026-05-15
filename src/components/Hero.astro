@@ -9,13 +9,14 @@ const t = useTranslations(lang);
   <div class="absolute inset-0 -z-10">
     <img src="/images/generated/hero-shanghai-campus.png" alt="" class="w-full h-full object-cover" />
     <div class="absolute inset-0 bg-gradient-to-r from-black/72 via-black/38 to-black/10"></div>
+    <div class="absolute inset-0 mix-blend-multiply" style="background: var(--color-heading); opacity: 0.35;"></div>
     <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-bg to-transparent"></div>
   </div>
   <div class="mx-auto max-w-6xl px-4 min-h-[620px] flex flex-col justify-center py-24 md:py-32 text-white">
-    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">UTC × Shanghai University</p>
-    <h1 class="mt-4 text-5xl md:text-7xl font-bold leading-tight">{title}</h1>
-    <p class="mt-5 text-xl md:text-2xl max-w-3xl text-white/90">{tagline}</p>
-    <div class="mt-8 flex gap-4">
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/80 reveal reveal--d1">UTC × Shanghai University</p>
+    <h1 class="mt-4 text-5xl md:text-7xl leading-tight !text-white reveal reveal--d2">{title}</h1>
+    <p class="mt-5 text-xl md:text-2xl max-w-3xl text-white/90 reveal reveal--d3">{tagline}</p>
+    <div class="mt-8 flex gap-4 reveal reveal--d3">
       <a href="#about" class="px-5 py-3 bg-accent text-white rounded">{t('cta.discover')}</a>
     </div>
   </div>
