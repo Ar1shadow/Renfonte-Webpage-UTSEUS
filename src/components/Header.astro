@@ -7,13 +7,17 @@ interface Props { lang?: Lang; }
 const { lang = 'fr' } = Astro.props;
 const t = useTranslations(lang);
 ---
-<header class="utc-header bg-bg border-b border-fg/10">
-  <div class="mx-auto max-w-7xl flex items-center justify-between px-4 py-3">
-    <a href={`/${lang}/`} class="flex items-center gap-2">
-      <img src="/images/logo-utseus.svg" alt="UTSEUS" class="h-10" />
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href={`/${lang}/`} class="site-header__brand" aria-label="UTSEUS home">
+      <span class="site-header__mark" aria-hidden="true">U</span>
+      <span>
+        <span class="site-header__name">UTSEUS</span>
+        <span class="site-header__sub">Shanghai × Réseau UT</span>
+      </span>
     </a>
-    <nav aria-label="Main">
-      <ul class="hidden md:flex gap-6 text-sm">
+    <nav aria-label="Main" class="site-header__nav">
+      <ul>
         <li><a href="#about">{t('nav.about')}</a></li>
         <li><a href="#mobility">{t('nav.mobility')}</a></li>
         <li><a href="#complexcity">{t('nav.complexcity')}</a></li>
@@ -22,9 +26,9 @@ const t = useTranslations(lang);
         <li><a href="#contact">{t('nav.contact')}</a></li>
       </ul>
     </nav>
-    <div class="flex items-center gap-4">
+    <div class="site-header__actions">
       <LangSwitcher current={lang} />
-      <a href="/docs/brochure-utseus.pdf" class="hidden sm:inline-block px-3 py-1 bg-accent text-white text-sm rounded">{t('cta.brochure')}</a>
+      <a href="/docs/brochure-utseus.pdf" class="site-header__cta">{t('cta.brochure')}</a>
     </div>
   </div>
 </header>

@@ -1,6 +1,6 @@
 [
-  { "value": "1200+", "label": { "en": "students per year", "fr": "étudiants par an", "zh": "在校学生每年" } },
-  { "value": "2005",  "label": { "en": "founded",            "fr": "fondé en",         "zh": "成立于" } },
-  { "value": "14",    "label": { "en": "research projects", "fr": "projets de recherche", "zh": "研究项目" } },
-  { "value": "5",     "label": { "en": "application areas", "fr": "domaines d'application", "zh": "应用领域" } }
+  { "value": "2005", "label": { "en": "creation of UTSEUS", "fr": "création d’UTSEUS", "zh": "UTSEUS 成立" } },
+  { "value": "1200+", "label": { "en": "students trained each year", "fr": "étudiants formés chaque année", "zh": "每年培养学生" } },
+  { "value": "4", "label": { "en": "engineering tracks", "fr": "filières d’ingénierie", "zh": "工程专业方向" } },
+  { "value": "14", "label": { "en": "Franco-Chinese research projects", "fr": "projets de recherche franco-chinois", "zh": "中法研究项目" } }
 ]

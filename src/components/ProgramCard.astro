@@ -11,8 +11,8 @@ interface Props { program: ProgramData; lang: Lang; }
 const { program, lang } = Astro.props;
 ---
 <article class="p-6 rounded-md bg-bg shadow-card border border-fg/5 flex flex-col gap-3" data-audience={program.audience}>
-  {program.icon && <img src={program.icon} alt="" class="h-12" />}
+  <div class="program-card-mark" aria-hidden="true"></div>
   <h3 class="text-xl font-bold">{program.title[lang]}</h3>
   <p class="text-sm">{program.description[lang]}</p>
-  <p class="text-xs text-muted">⏱ {program.duration}</p>
+  <p class="text-xs font-semibold text-accent">{program.duration}</p>
 </article>

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import SectionBlock from '../../components/SectionBlock.astro';
 import SidebarTOC from '../../components/SidebarTOC.astro';
+import SectionMedia from '../../components/SectionMedia.astro';
 import KeyFiguresGrid from '../../components/KeyFiguresGrid.astro';
 import ProgramFilter from '../../components/ProgramFilter.astro';
 import ProjectModal from '../../components/ProjectModal.astro';
@@ -23,23 +24,27 @@ const { Content: Complex } = await render(complexcity!);
 const { Content: Projects } = await render(projects!);
 const { Content: Contact } = await render(contact!);
 ---
-<BaseLayout lang={lang} title="UTSEUS — Sino-French Institute in Engineering" description="UTSEUS: the first Sino-French institute in engineering, based at Shanghai University.">
+<BaseLayout lang={lang} title="UTSEUS - Sino-French Institute in Engineering" description="UTSEUS: a Sino-French engineering institute based at Shanghai University.">
   <Hero lang={lang} title={t('hero.title')} tagline={t('hero.tagline')} />
   <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-[200px_1fr] gap-8">
     <SidebarTOC lang={lang} />
     <div>
       <SectionBlock id="about" title={t('section.about.title')}>
+        <SectionMedia src="/images/generated/section-about.png" alt="Students and teachers working in an international engineering workshop" />
         <KeyFiguresGrid lang={lang} />
         <About />
       </SectionBlock>
       <SectionBlock id="mobility" title={t('section.mobility.title')}>
+        <SectionMedia src="/images/generated/section-mobility.png" alt="International students arriving at a modern campus" />
         <Mobility />
         <ProgramFilter lang={lang} />
       </SectionBlock>
       <SectionBlock id="complexcity" title={t('section.complexcity.title')}>
+        <SectionMedia src="/images/generated/section-complexcity.png" alt="Research laboratory for urban data and smart city systems" />
         <Complex />
       </SectionBlock>
       <SectionBlock id="projects" title={t('section.projects.title')}>
+        <SectionMedia src="/images/generated/section-projects.png" alt="Smart city model with sensors and data flows" />
         <Projects />
         <ProjectModal lang={lang} />
       </SectionBlock>
@@ -47,6 +52,7 @@ const { Content: Contact } = await render(contact!);
         <TestimonialCarousel lang={lang} />
       </SectionBlock>
       <SectionBlock id="contact" title={t('section.contact.title')}>
+        <SectionMedia src="/images/generated/section-contact.png" alt="University office desk with documentation and laptop" />
         <Contact />
       </SectionBlock>
     </div>

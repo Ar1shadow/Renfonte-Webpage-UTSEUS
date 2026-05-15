@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import heroImg from '../assets/hero-shanghai.svg';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 interface Props { lang: Lang; title: string; tagline: string; }
@@ -9,14 +7,17 @@ const t = useTranslations(lang);
 ---
 <section id="hero" class="relative isolate overflow-hidden bg-bg">
   <div class="absolute inset-0 -z-10">
-    <Image src={heroImg} alt="" width={1920} height={1080} class="w-full h-full object-cover opacity-40" />
+    <img src="/images/generated/hero-shanghai-campus.png" alt="" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/72 via-black/38 to-black/10"></div>
+    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-bg to-transparent"></div>
   </div>
-  <div class="mx-auto max-w-6xl px-4 py-24 md:py-32">
-    <h1 class="text-4xl md:text-6xl font-bold leading-tight">{title}</h1>
-    <p class="mt-4 text-lg md:text-xl max-w-2xl">{tagline}</p>
+  <div class="mx-auto max-w-6xl px-4 min-h-[620px] flex flex-col justify-center py-24 md:py-32 text-white">
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">UTC × Shanghai University</p>
+    <h1 class="mt-4 text-5xl md:text-7xl font-bold leading-tight">{title}</h1>
+    <p class="mt-5 text-xl md:text-2xl max-w-3xl text-white/90">{tagline}</p>
     <div class="mt-8 flex gap-4">
       <a href="#about" class="px-5 py-3 bg-accent text-white rounded">{t('cta.discover')}</a>
-      <a href="/docs/brochure-utseus.pdf" class="px-5 py-3 border border-fg rounded">{t('cta.brochure')}</a>
+      <a href="/docs/brochure-utseus.pdf" class="px-5 py-3 border border-white/80 text-white rounded hover:bg-white/10">{t('cta.brochure')}</a>
     </div>
   </div>
 </section>

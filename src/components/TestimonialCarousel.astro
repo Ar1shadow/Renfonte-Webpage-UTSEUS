@@ -9,13 +9,15 @@ const items = await getCollection('testimonials');
     {items.map(t => (
       <li class="snap-start shrink-0 w-[80vw] md:w-[480px] p-6 bg-bg shadow-card rounded">
         <div class="flex items-center gap-3 mb-3">
-          <img src={t.data.photo} alt="" class="w-12 h-12 rounded-full object-cover" />
+          <div class="w-12 h-12 rounded-full bg-accent-soft text-accent flex items-center justify-center font-bold" aria-hidden="true">
+            {t.data.name.split(' ').map(part => part[0]).join('')}
+          </div>
           <div>
             <p class="font-bold">{t.data.name}</p>
             <p class="text-xs text-muted">{t.data.promo} · {t.data.program} · {t.data.year}</p>
           </div>
         </div>
-        <blockquote class="italic">«{t.data.quote[lang]}»</blockquote>
+        <blockquote class="italic">“{t.data.quote[lang]}”</blockquote>
       </li>
     ))}
   </ol>

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import SectionBlock from '../../components/SectionBlock.astro';
 import SidebarTOC from '../../components/SidebarTOC.astro';
+import SectionMedia from '../../components/SectionMedia.astro';
 import KeyFiguresGrid from '../../components/KeyFiguresGrid.astro';
 import ProgramFilter from '../../components/ProgramFilter.astro';
 import ProjectModal from '../../components/ProjectModal.astro';
@@ -23,23 +24,27 @@ const { Content: Complex } = await render(complexcity!);
 const { Content: Projects } = await render(projects!);
 const { Content: Contact } = await render(contact!);
 ---
-<BaseLayout lang={lang} title="UTSEUS — 中法工程师学院" description="UTSEUS，首个位于上海大学的中法合作工程师学院。">
+<BaseLayout lang={lang} title="UTSEUS - 中法工程师学院" description="UTSEUS：位于上海大学的中法工程师学院。">
   <Hero lang={lang} title={t('hero.title')} tagline={t('hero.tagline')} />
   <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-[200px_1fr] gap-8">
     <SidebarTOC lang={lang} />
     <div>
       <SectionBlock id="about" title={t('section.about.title')}>
+        <SectionMedia src="/images/generated/section-about.png" alt="学生和教师在国际化工程工作坊中协作" />
         <KeyFiguresGrid lang={lang} />
         <About />
       </SectionBlock>
       <SectionBlock id="mobility" title={t('section.mobility.title')}>
+        <SectionMedia src="/images/generated/section-mobility.png" alt="国际学生抵达现代大学校园" />
         <Mobility />
         <ProgramFilter lang={lang} />
       </SectionBlock>
       <SectionBlock id="complexcity" title={t('section.complexcity.title')}>
+        <SectionMedia src="/images/generated/section-complexcity.png" alt="面向城市数据和智慧城市系统的研究实验室" />
         <Complex />
       </SectionBlock>
       <SectionBlock id="projects" title={t('section.projects.title')}>
+        <SectionMedia src="/images/generated/section-projects.png" alt="包含传感器和数据流的智慧城市模型" />
         <Projects />
         <ProjectModal lang={lang} />
       </SectionBlock>
@@ -47,6 +52,7 @@ const { Content: Contact } = await render(contact!);
         <TestimonialCarousel lang={lang} />
       </SectionBlock>
       <SectionBlock id="contact" title={t('section.contact.title')}>
+        <SectionMedia src="/images/generated/section-contact.png" alt="带有资料和电脑的大学办公室桌面" />
         <Contact />
       </SectionBlock>
     </div>

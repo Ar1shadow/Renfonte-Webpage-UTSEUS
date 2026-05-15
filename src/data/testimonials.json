@@ -1,5 +1,41 @@
 [
-  { "id": "alice-martin",   "name": "Alice Martin",   "promo": "GI06",      "program": "International Engineer",         "photo": "/images/people/alice.jpg",   "quote": { "en": "TODO", "fr": "TODO", "zh": "TODO" }, "year": 2024 },
-  { "id": "liu-wei",        "name": "Liu Wei",        "promo": "UTSEUS22",  "program": "Engineering program",            "photo": "/images/people/liu.jpg",     "quote": { "en": "TODO", "fr": "TODO", "zh": "TODO" }, "year": 2024 },
-  { "id": "camille-dubois", "name": "Camille Dubois", "promo": "TC04",      "program": "Language, culture & innovation", "photo": "/images/people/camille.jpg", "quote": { "en": "TODO", "fr": "TODO", "zh": "TODO" }, "year": 2025 }
+  {
+    "id": "alice-martin",
+    "name": "Alice Martin",
+    "promo": "GI06",
+    "program": "International Engineer",
+    "photo": "/images/generated/section-mobility.png",
+    "quote": {
+      "en": "The semester in Shanghai made the international part of engineering concrete: courses, company projects and daily intercultural work were all connected.",
+      "fr": "Le semestre à Shanghai a rendu la dimension internationale de l’ingénierie très concrète : cours, projets avec des entreprises et travail interculturel se répondaient.",
+      "zh": "上海的学期让我真正理解了工程教育的国际维度：课程、企业项目和跨文化协作是连在一起的。"
+    },
+    "year": 2024
+  },
+  {
+    "id": "liu-wei",
+    "name": "Liu Wei",
+    "promo": "UTSEUS22",
+    "program": "Engineering programme",
+    "photo": "/images/generated/section-about.png",
+    "quote": {
+      "en": "UTSEUS gave me a clear path from Shanghai to the French UT network, with language training and engineering courses progressing together.",
+      "fr": "UTSEUS m’a donné un parcours clair entre Shanghai et le réseau UT français, avec une progression conjointe en langue et en ingénierie.",
+      "zh": "UTSEUS 给了我从上海走向法国 UT 网络的清晰路径，语言学习和工程课程是同步推进的。"
+    },
+    "year": 2024
+  },
+  {
+    "id": "camille-dubois",
+    "name": "Camille Dubois",
+    "promo": "TC04",
+    "program": "Language, culture and innovation",
+    "photo": "/images/generated/section-contact.png",
+    "quote": {
+      "en": "The programme is valuable because it treats culture and innovation as part of the same engineering conversation.",
+      "fr": "La force du programme est de traiter la culture et l’innovation comme deux dimensions d’une même pratique d’ingénieur.",
+      "zh": "这个项目的价值在于把文化和创新放在同一个工程实践语境中理解。"
+    },
+    "year": 2025
+  }
 ]
