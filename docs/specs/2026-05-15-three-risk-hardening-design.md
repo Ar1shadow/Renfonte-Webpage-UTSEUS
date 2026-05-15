@@ -5,7 +5,7 @@ Status: approved (pending implementation)
 
 ## Context
 
-The post-merge code review of Yang/Develop_Web (see `docs/merge-report-2026-05-15.md`) flagged three risks:
+The post-merge code review of Yang/Develop_Web (see `docs/logs/2026-05-15-merge-report-track.md`) flagged three risks:
 
 1. `src/components/LangSwitcher.astro:47-52` — document-scoped event listeners attached inside a per-menu `forEach`. With N menus on a page, N pairs of listeners attach to `document`, all calling close on Escape; the pattern accumulates listeners and is brittle.
 2. `src/components/ProjectCard.astro:29` — `id={`g-${project.slug}`}` interpolates `slug` into SVG element ids without validation. Special chars in a slug would break the SVG `url(#…)` reference.

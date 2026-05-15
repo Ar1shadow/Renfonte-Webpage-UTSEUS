@@ -45,3 +45,6 @@ tmp/lh-*.html
 
 # claude code
 .claude/
+
+# bilingual ZH companion plans (FR is canonical, committed)
+docs/plans/*.zh.md
