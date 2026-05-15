@@ -25,6 +25,7 @@ const hreflangHref = (l: string) => `${siteOrigin}/${l}/`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <link rel="icon" type="image/png" sizes="any" href={`${import.meta.env.BASE_URL}UTC.png`} />
     <link rel="alternate" hreflang="en" href={hreflangHref('en')} />
     <link rel="alternate" hreflang="fr" href={hreflangHref('fr')} />
     <link rel="alternate" hreflang="zh" href={hreflangHref('zh')} />
