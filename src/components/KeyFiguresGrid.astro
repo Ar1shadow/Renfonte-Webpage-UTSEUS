@@ -2,12 +2,107 @@
 import figures from '../data/key-figures.json';
 import type { Lang } from '../i18n/ui';
 const { lang } = Astro.props as { lang: Lang };
+
+const details: Record<Lang, string[]> = {
+  en: [
+    'A long-running partnership between the French Universities of Technology network and Shanghai University.',
+    'A student community moving between Shanghai, France and the UT network.',
+    'Computer, mechanical, biological and materials engineering paths.',
+    'A research ecosystem structured around Sino-French urban and engineering topics.',
+  ],
+  fr: [
+    'Un partenariat durable entre le réseau des universités de technologie françaises et l’Université de Shanghai.',
+    'Une communauté étudiante en circulation entre Shanghai, la France et le réseau UT.',
+    'Informatique, mécanique, génie biologique et science des matériaux.',
+    'Un écosystème de recherche structuré autour de sujets urbains et d’ingénierie sino-français.',
+  ],
+  zh: [
+    '法国技术大学网络与上海大学长期合作形成的中法工程教育平台。',
+    '连接上海、法国与 UT 网络的双向学生流动。',
+    '计算机工程、机械工程、生物工程和材料科学四个方向。',
+    '围绕中法城市与工程议题展开的科研合作网络。',
+  ],
+};
+
+const marker: Record<Lang, string> = {
+  en: '【UI-TASK-04】 Key figures redesign',
+  fr: '【UI-TASK-04】 Refonte des chiffres clés',
+  zh: '【UI-TASK-04】 关键数字卡片重设计',
+};
+
+const visualTypes = ['timeline', 'exchange', 'tracks', 'research'];
+const trackIconSrcs = [
+  '/images/icons/generated/major-computer-engineering.png',
+  '/images/icons/generated/major-mechanical-engineering.png',
+  '/images/icons/generated/major-biological-engineering.png',
+  '/images/icons/generated/major-materials-science.png',
+];
+
+const researchIconSrcs = [
+  '/images/icons/generated/project-smart-city.png',
+  '/images/icons/generated/project-urban-logistics.png',
+  '/images/icons/generated/project-building-energy.png',
+  '/images/icons/generated/project-safety-risk.png',
+  '/images/icons/generated/project-health-aging.png',
+  '/images/icons/generated/project-water-waste.png',
+  '/images/icons/generated/project-data-modeling.png',
+  '/images/icons/generated/project-connected-infrastructure.png',
+];
 ---
-<ul class="grid grid-cols-2 md:grid-cols-4 gap-6">
-  {figures.map(f => (
-    <li class="p-6 rounded bg-fg/5 text-center">
-      <div class="text-4xl font-bold text-accent">{f.value}</div>
-      <div class="mt-2 text-sm">{f.label[lang]}</div>
+<section class="key-figures" aria-label={marker[lang]}>
+  <p class="key-figures__marker">{marker[lang]}</p>
+  <ul class="key-figures__grid">
+    {figures.map((f, index) => (
+    <li class={`key-figure key-figure--${visualTypes[index]}`}>
+      <div class="key-figure__visual" aria-hidden="true">
+        {visualTypes[index] === 'timeline' && (
+          <div class="key-figure-timeline">
+            <span></span>
+            <i></i>
+          </div>
+        )}
+        {visualTypes[index] === 'exchange' && (
+          <div class="key-figure-exchange">
+            <span><img src="/images/flags/cn.png" alt="" loading="lazy" /></span>
+            <svg viewBox="0 0 140 56" aria-hidden="true">
+              <defs>
+                <marker id="flow-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                </marker>
+                <marker id="flow-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                </marker>
+              </defs>
+              <path class="flow flow--top" d="M8 36 C38 8 92 8 126 25" />
+              <path class="flow flow--bottom" d="M132 21 C102 50 47 50 14 32" />
+            </svg>
+            <span><img src="/images/flags/fr.png" alt="" loading="lazy" /></span>
+          </div>
+        )}
+        {visualTypes[index] === 'tracks' && (
+          <div class="key-figure-branches">
+            {trackIconSrcs.map((iconSrc) => (
+              <span class="key-figure-branch">
+                <img src={iconSrc} alt="" loading="lazy" />
+              </span>
+            ))}
+          </div>
+        )}
+        {visualTypes[index] === 'research' && (
+          <div class="key-figure-research">
+            {researchIconSrcs.map((iconSrc) => (
+              <span><img src={iconSrc} alt="" loading="lazy" /></span>
+            ))}
+            <i></i>
+          </div>
+        )}
+      </div>
+      <div class="key-figure__body">
+        <div class="key-figure__value">{f.value}</div>
+        <h3>{f.label[lang]}</h3>
+        <p>{details[lang][index]}</p>
+      </div>
     </li>
-  ))}
-</ul>
+    ))}
+  </ul>
+</section>

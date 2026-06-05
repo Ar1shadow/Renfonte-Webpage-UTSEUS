@@ -1,0 +1,51 @@
+---
+import type { Lang } from '../i18n/ui';
+
+const { lang } = Astro.props as { lang: Lang };
+
+const copy = {
+  fr: {
+    marker: '【UI-TASK-02】 Palette retenue',
+    title: 'Palette retenue pour la suite',
+    intro:
+      'Base visuelle: B pour la direction principale, A comme soutien institutionnel, cyan de D comme couleur d’extension.',
+    base: 'B. Direction principale',
+    expressive: 'A. Soutien institutionnel',
+    extension: 'Extension cyan',
+  },
+  en: {
+    marker: '【UI-TASK-02】 Selected palette',
+    title: 'Selected palette direction',
+    intro:
+      'Visual base: B as the main direction, A as institutional support, cyan from D as an extension color.',
+    base: 'B. Main direction',
+    expressive: 'A. Institutional support',
+    extension: 'Cyan extension',
+  },
+  zh: {
+    marker: '【UI-TASK-02】 已选定配色',
+    title: '后续采用的配色方向',
+    intro:
+      '主要使用方案 2 的红蓝渐变方向；方案 1 作为较稳重的辅助色；方案 4 中的青色保留为拓展标注色。',
+    base: '2. 主配色方向',
+    expressive: '1. 稳重辅助色',
+    extension: '4. 青色拓展色',
+  },
+}[lang];
+---
+<section class="selected-palette" aria-labelledby="selected-palette-title">
+  <div class="selected-palette__inner">
+    <p class="selected-palette__marker">{copy.marker}</p>
+    <div class="selected-palette__content">
+      <div>
+        <h2 id="selected-palette-title">{copy.title}</h2>
+        <p>{copy.intro}</p>
+      </div>
+      <div class="selected-palette__chips" aria-label={copy.title}>
+        <span class="selected-palette__chip selected-palette__chip--base">{copy.base}</span>
+        <span class="selected-palette__chip selected-palette__chip--expressive">{copy.expressive}</span>
+        <span class="selected-palette__chip selected-palette__chip--cyan">{copy.extension}</span>
+      </div>
+    </div>
+  </div>
+</section>

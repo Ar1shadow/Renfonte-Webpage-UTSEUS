@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import SelectedPalettePanel from '../../components/SelectedPalettePanel.astro';
 import SectionBlock from '../../components/SectionBlock.astro';
 import SidebarTOC from '../../components/SidebarTOC.astro';
 import SectionMedia from '../../components/SectionMedia.astro';
@@ -26,6 +27,7 @@ const { Content: Contact } = await render(contact!);
 ---
 <BaseLayout lang={lang} title="UTSEUS - Institut sino-français en ingénierie" description="UTSEUS : institut sino-français en ingénierie à l’Université de Shanghai.">
   <Hero lang={lang} title={t('hero.title')} tagline={t('hero.tagline')} />
+  <SelectedPalettePanel lang={lang} />
   <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-[200px_1fr] gap-8">
     <SidebarTOC lang={lang} />
     <div>

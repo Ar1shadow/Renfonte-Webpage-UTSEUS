@@ -10,53 +10,41 @@ interface ProjectData {
 }
 interface Props { project: ProjectData; lang: Lang; index: number; }
 const { project, lang, index } = Astro.props;
-const colors = [
-  ['#16314f', '#2f6f8f'],
-  ['#4b1d3b', '#c0142a'],
-  ['#1f5b4e', '#d28a24'],
-  ['#233f7a', '#2f8f73'],
-  ['#5d337f', '#c05b14'],
-  ['#23394d', '#7c8f2f'],
-  ['#5a2140', '#d26666'],
-  ['#17435c', '#65a6c4'],
-  ['#382a6a', '#37a784'],
-  ['#6b3b19', '#c0842e'],
-  ['#263238', '#80a4a8'],
-  ['#532b67', '#c04f8f'],
-  ['#223f2f', '#b6a632'],
-  ['#17304a', '#c0142a'],
-];
-const [from, to] = colors[index % colors.length];
-const number = String(index + 1).padStart(2, '0');
 const axisLabel = project.axis.replace('-', ' ');
-const seed = index + 1;
+const fallbackIcons = [
+  '/images/icons/generated/project-smart-city.png',
+  '/images/icons/generated/project-urban-logistics.png',
+  '/images/icons/generated/project-building-energy.png',
+  '/images/icons/generated/project-safety-risk.png',
+  '/images/icons/generated/project-health-aging.png',
+  '/images/icons/generated/project-water-waste.png',
+  '/images/icons/generated/project-data-modeling.png',
+  '/images/icons/generated/project-sustainable-mobility.png',
+  '/images/icons/generated/project-digital-culture.png',
+  '/images/icons/generated/project-connected-infrastructure.png',
+];
+const projectIconMap: Record<string, string> = {
+  'traffic-models': '/images/icons/generated/project-sustainable-mobility.png',
+  'camera-sensor-monitoring': '/images/icons/generated/project-safety-risk.png',
+  'engineering-modeling': '/images/icons/generated/project-data-modeling.png',
+  'sustainable-practices': '/images/icons/generated/project-smart-city.png',
+  'smart-city-logistics': '/images/icons/generated/project-urban-logistics.png',
+  'health-surveillance': '/images/icons/generated/project-health-aging.png',
+  'audio-scenes': '/images/icons/generated/project-safety-risk.png',
+  'building-life-cycle': '/images/icons/generated/project-building-energy.png',
+  'web-mobility-data': '/images/icons/generated/project-data-modeling.png',
+  dynamicity: '/images/icons/generated/project-connected-infrastructure.png',
+  'urban-metabolism': '/images/icons/generated/project-water-waste.png',
+  'digital-eternity': '/images/icons/generated/project-digital-culture.png',
+  'smart-building-energy': '/images/icons/generated/project-building-energy.png',
+  'urban-comfort': '/images/icons/generated/project-building-energy.png',
+};
+const iconSrc = projectIconMap[project.slug] ?? fallbackIcons[index % fallbackIcons.length];
 ---
 <div class="project-card group" data-project={project.slug} tabindex="0" role="button" aria-label={project.title[lang]}>
-  <figure class="project-illustration" style={`--from:${from};--to:${to};`}>
-    <svg viewBox="0 0 640 360" role="img" aria-label={project.title[lang]}>
-      <defs>
-        <linearGradient id={`g-${project.slug}`} x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color={from} />
-          <stop offset="1" stop-color={to} />
-        </linearGradient>
-        <pattern id={`grid-${project.slug}`} width={40 + seed * 2} height={40 + seed * 2} patternUnits="userSpaceOnUse">
-          <path d={`M ${40 + seed * 2} 0 L 0 0 0 ${40 + seed * 2}`} fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1" />
-        </pattern>
-      </defs>
-      <rect width="640" height="360" fill={`url(#g-${project.slug})`} />
-      <rect width="640" height="360" fill={`url(#grid-${project.slug})`} opacity="0.75" />
-      <circle cx={90 + seed * 17} cy={70 + seed * 9} r={52 + seed * 2} fill="rgba(255,255,255,.16)" />
-      <circle cx={500 - seed * 11} cy={98 + seed * 5} r={34 + seed * 3} fill="rgba(255,255,255,.22)" />
-      <path d={`M 70 ${260 - seed * 3} C ${180 + seed * 7} ${125 + seed * 4}, ${290 - seed * 3} ${300 - seed * 6}, ${560 - seed * 8} ${145 + seed * 5}`} fill="none" stroke="rgba(255,255,255,.72)" stroke-width="8" stroke-linecap="round" />
-      <path d={`M 95 ${290 - seed * 2} C ${230 - seed * 4} ${230 + seed * 3}, ${340 + seed * 5} ${120 + seed * 2}, ${590 - seed * 10} ${230 - seed * 4}`} fill="none" stroke="rgba(255,255,255,.34)" stroke-width="3" stroke-linecap="round" />
-      <g fill="rgba(255,255,255,.82)">
-        <rect x={110 + seed * 8} y={202 - seed * 4} width="58" height="58" rx="10" />
-        <rect x={285 - seed * 4} y={110 + seed * 5} width="46" height="46" rx="23" />
-        <rect x={440 - seed * 7} y={222 - seed * 3} width="70" height="42" rx="12" />
-      </g>
-      <text x="36" y="70" fill="white" font-size="46" font-family="Inter, Arial, sans-serif" font-weight="900">{number}</text>
-      <text x="36" y="318" fill="white" opacity="0.88" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="800" letter-spacing="3">{axisLabel.toUpperCase()}</text>
-    </svg>
+  <figure class="project-illustration project-illustration--icon">
+    <span class="project-illustration__circuit" aria-hidden="true"></span>
+    <img src={iconSrc} alt="" loading="lazy" />
   </figure>
   <div class="project-card__body">
     <p class="project-card__axis">{axisLabel}</p>
