@@ -9,10 +9,35 @@ interface ProgramData {
 }
 interface Props { program: ProgramData; lang: Lang; }
 const { program, lang } = Astro.props;
+const copy = {
+  en: {
+    audience: 'Audience',
+    chineseAudience: 'Chinese students',
+    frenchAudience: 'French students',
+  },
+  fr: {
+    audience: 'Public',
+    chineseAudience: 'Étudiants chinois',
+    frenchAudience: 'Étudiants français',
+  },
+  zh: {
+    audience: '对象',
+    chineseAudience: '中国学生',
+    frenchAudience: '法国学生',
+  },
+}[lang];
+const isChineseAudience = program.audience === 'chinese-students';
+const audience = isChineseAudience ? copy.chineseAudience : copy.frenchAudience;
+const logoSrc = isChineseAudience ? '/images/brand/logo-shu-transparent.png' : '/images/brand/logo-utc-transparent.png';
+const logoAlt = isChineseAudience ? 'Shanghai University' : 'Université de technologie de Compiègne';
 ---
-<article class="p-6 rounded-md bg-bg shadow-card border border-fg/5 flex flex-col gap-3" data-audience={program.audience}>
-  <div class="program-card-mark" aria-hidden="true"></div>
-  <h3 class="text-xl font-bold">{program.title[lang]}</h3>
-  <p class="text-sm">{program.description[lang]}</p>
-  <p class="text-xs font-semibold text-accent">{program.duration}</p>
+<article class={`program-card program-card--${program.audience}`} data-audience={program.audience}>
+  <div class="program-card__visual" aria-hidden="true">
+    <img src={logoSrc} alt={logoAlt} loading="lazy" />
+  </div>
+  <div class="program-card__body">
+    <p class="program-card__audience">{audience}</p>
+    <h3>{program.title[lang]}</h3>
+    <p class="program-card__description">{program.description[lang]}</p>
+  </div>
 </article>

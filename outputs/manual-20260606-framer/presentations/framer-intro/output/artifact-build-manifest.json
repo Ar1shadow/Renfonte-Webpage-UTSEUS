@@ -1,0 +1,118 @@
+{
+  "output": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/output/framer-introduction-francais.pptx",
+  "outputBytes": 51481,
+  "slideCount": 10,
+  "slideSize": {
+    "width": 1280,
+    "height": 720
+  },
+  "previewDir": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview",
+  "previewPaths": [
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-01.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-02.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-03.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-04.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-05.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-06.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-07.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-08.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-09.png",
+    "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/slide-10.png"
+  ],
+  "layoutDir": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final",
+  "layoutResults": [
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-01.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-02.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-03.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-04.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-05.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-06.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-07.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-08.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-09.layout.json"
+    },
+    {
+      "layoutPath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/layout/final/slide-10.layout.json"
+    }
+  ],
+  "contactSheet": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/preview/contact-sheet-francais.png",
+  "slides": [
+    {
+      "index": 1,
+      "requestedSlideNumber": 1,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-01.mjs",
+      "exportName": "slide01"
+    },
+    {
+      "index": 2,
+      "requestedSlideNumber": 2,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-02.mjs",
+      "exportName": "slide02"
+    },
+    {
+      "index": 3,
+      "requestedSlideNumber": 3,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-03.mjs",
+      "exportName": "slide03"
+    },
+    {
+      "index": 4,
+      "requestedSlideNumber": 4,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-04.mjs",
+      "exportName": "slide04"
+    },
+    {
+      "index": 5,
+      "requestedSlideNumber": 5,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-05.mjs",
+      "exportName": "slide05"
+    },
+    {
+      "index": 6,
+      "requestedSlideNumber": 6,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-06.mjs",
+      "exportName": "slide06"
+    },
+    {
+      "index": 7,
+      "requestedSlideNumber": 7,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-07.mjs",
+      "exportName": "slide07"
+    },
+    {
+      "index": 8,
+      "requestedSlideNumber": 8,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-08.mjs",
+      "exportName": "slide08"
+    },
+    {
+      "index": 9,
+      "requestedSlideNumber": 9,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-09.mjs",
+      "exportName": "slide09"
+    },
+    {
+      "index": 10,
+      "requestedSlideNumber": 10,
+      "modulePath": "/Users/zixuanxu/Documents/Renfonte-Webpage-UTSEUS/outputs/manual-20260606-framer/presentations/framer-intro/slides/slide-10.mjs",
+      "exportName": "slide10"
+    }
+  ]
+}

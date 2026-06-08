@@ -1,0 +1,8 @@
+Task mode: create
+Primary deck-profile: product-platform
+Secondary gates: bilingual educational presentation; simple French below Chinese.
+Required proof objects: workflow map, positioning model, feature system, comparison matrix, pricing ladder.
+Source/asset requirements: use existing Markdown script; official Framer pricing and product pages as source notes. No unverified logos.
+Brand constraints: abstract Framer-inspired visual language only; no unofficial Framer logo recreation.
+QA gates: editable shapes/text, legible bilingual copy, no dense paragraphs, 10-slide rhythm, rendered previews clean.
+Known missing inputs: no template deck supplied.

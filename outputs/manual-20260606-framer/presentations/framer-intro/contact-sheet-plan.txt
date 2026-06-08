@@ -1,0 +1,12 @@
+1. Cover: dark editorial cover with concise thesis.
+2. Workflow: before/after process map.
+3. Positioning: three-part platform model.
+4. Design experience: split claim + parameter chips.
+5. Components/interactions: component reuse diagram.
+6. AI/CMS/publish: three-step product flow.
+7. Comparison: matrix against HTML/CSS, Webflow, Figma.
+8. Pricing: simple plan ladder.
+9. Advantages/limits: two-column tradeoff.
+10. Close: single memorable takeaway.
+
+Macro layouts: cover, process map, radial/triad model, split explainer, reuse system, flow diagram, matrix table, ladder, two-column contrast, closing statement.
