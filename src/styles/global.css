@@ -994,13 +994,13 @@ h2 { font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem); line-height: 1.15; }
   background: var(--gradient-sino-french);
 }
 
-.program-card--french-students {
+.program-card--incoming-students {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(244, 200, 77, 0.22)),
     #fff;
 }
 
-.program-card--french-students::before {
+.program-card--incoming-students::before {
   background: linear-gradient(90deg, var(--color-accent), var(--color-yellow));
 }
 
@@ -1031,7 +1031,7 @@ h2 { font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem); line-height: 1.15; }
   content: none;
 }
 
-.program-card--french-students .program-card__visual {
+.program-card--incoming-students .program-card__visual {
   opacity: 0.3;
 }
 
@@ -1072,7 +1072,7 @@ h2 { font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem); line-height: 1.15; }
   line-height: 1.1;
 }
 
-.program-card--french-students .program-card__audience {
+.program-card--incoming-students .program-card__audience {
   background: rgba(244, 200, 77, 0.2);
   color: rgba(237, 91, 49, 0.9);
 }

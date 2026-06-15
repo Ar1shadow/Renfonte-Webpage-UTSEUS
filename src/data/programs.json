@@ -16,7 +16,7 @@
   },
   {
     "slug": "sciences-humanities",
-    "audience": "french-students",
+    "audience": "incoming-students",
     "title": {
       "en": "Sciences and Humanities in China",
       "fr": "Sciences et humanités en Chine",
@@ -31,7 +31,7 @@
   },
   {
     "slug": "international-engineer",
-    "audience": "french-students",
+    "audience": "incoming-students",
     "title": {
       "en": "International Engineer",
       "fr": "Ingénieur international",
@@ -46,7 +46,7 @@
   },
   {
     "slug": "language-culture",
-    "audience": "french-students",
+    "audience": "incoming-students",
     "title": {
       "en": "Language, culture and innovation",
       "fr": "Langue, culture et innovation",

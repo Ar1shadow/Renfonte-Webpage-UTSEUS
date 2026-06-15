@@ -1,7 +1,7 @@
 ---
 import type { Lang } from '../i18n/ui';
 interface ProgramData {
-  audience: 'chinese-students' | 'french-students';
+  audience: 'chinese-students' | 'incoming-students';
   title: { en: string; fr: string; zh: string };
   description: { en: string; fr: string; zh: string };
   duration: string;
@@ -13,21 +13,21 @@ const copy = {
   en: {
     audience: 'Audience',
     chineseAudience: 'Chinese students',
-    frenchAudience: 'French students',
+    incomingAudience: 'Incoming exchange students',
   },
   fr: {
     audience: 'Public',
     chineseAudience: 'Étudiants chinois',
-    frenchAudience: 'Étudiants français',
+    incomingAudience: 'Étudiants en mobilité entrante',
   },
   zh: {
     audience: '对象',
     chineseAudience: '中国学生',
-    frenchAudience: '法国学生',
+    incomingAudience: '来沪交换生',
   },
 }[lang];
 const isChineseAudience = program.audience === 'chinese-students';
-const audience = isChineseAudience ? copy.chineseAudience : copy.frenchAudience;
+const audience = isChineseAudience ? copy.chineseAudience : copy.incomingAudience;
 const logoSrc = isChineseAudience ? '/images/brand/logo-shu-transparent.png' : '/images/brand/logo-utc-transparent.png';
 const logoAlt = isChineseAudience ? 'Shanghai University' : 'Université de technologie de Compiègne';
 ---

@@ -6,6 +6,7 @@ const sectionId = z.enum([
   'hero',
   'about',
   'mobility',
+  'courses',
   'complexcity',
   'projects',
   'testimonials',
@@ -59,7 +60,7 @@ const programs = defineCollection({
   loader: file('src/data/programs.json'),
   schema: z.object({
     slug: z.string(),
-    audience: z.enum(['chinese-students', 'french-students']),
+    audience: z.enum(['chinese-students', 'incoming-students']),
     title: langTriad,
     description: langTriad,
     duration: z.string(),

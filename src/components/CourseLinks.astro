@@ -1,0 +1,104 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+
+const links = [
+  {
+    href: '/docs/ie2-courses-2025.pdf',
+    title: t('courses.ie2.title'),
+    subtitle: t('courses.ie2.subtitle'),
+    number: '01',
+  },
+  {
+    href: '/docs/tc-innovation-2027.pdf',
+    title: t('courses.tc.title'),
+    subtitle: t('courses.tc.subtitle'),
+    number: '02',
+  },
+];
+---
+<div class="course-links">
+  {links.map((l) => (
+    <a class="course-link" href={l.href} target="_blank" rel="noopener" aria-label={`${l.title} — PDF`}>
+      <span class="course-link__number" aria-hidden="true">{l.number}</span>
+      <span class="course-link__body">
+        <span class="course-link__title">{l.title}</span>
+        <span class="course-link__subtitle">{l.subtitle}</span>
+      </span>
+      <span class="course-link__arrow" aria-hidden="true">→</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .course-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 2rem 0 0;
+  }
+  .course-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    border: 2px solid var(--color-fg);
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  }
+  .course-link:hover,
+  .course-link:focus-visible {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateX(4px);
+    outline: none;
+  }
+  .course-link__number {
+    font-family: var(--font-display, inherit);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    opacity: 0.85;
+  }
+  .course-link__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+  .course-link__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .course-link__subtitle {
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+  .course-link__arrow {
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 160ms ease;
+  }
+  .course-link:hover .course-link__arrow,
+  .course-link:focus-visible .course-link__arrow {
+    transform: translateX(4px);
+  }
+  @media (max-width: 540px) {
+    .course-link {
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem 1rem;
+      padding: 1rem 1.1rem;
+    }
+    .course-link__arrow {
+      grid-column: 2;
+      justify-self: end;
+    }
+  }
+</style>

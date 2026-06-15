@@ -46,5 +46,8 @@ tmp/lh-*.html
 # claude code
 .claude/
 
+# codegraph local index
+.codegraph/
+
 # bilingual ZH companion plans (FR is canonical, committed)
 docs/plans/*.zh.md
