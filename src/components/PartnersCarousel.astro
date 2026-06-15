@@ -1,0 +1,290 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const entries = await getCollection('partners');
+const partners = entries.map((e) => e.data);
+const ariaLabel = lang === 'fr' ? 'Entreprises partenaires' : lang === 'zh' ? '合作企业' : 'Partner companies';
+const prevLabel = lang === 'fr' ? 'Précédent' : lang === 'zh' ? '上一个' : 'Previous';
+const nextLabel = lang === 'fr' ? 'Suivant' : lang === 'zh' ? '下一个' : 'Next';
+const linkLabel = lang === 'fr' ? 'Site officiel ↗' : lang === 'zh' ? '官网 ↗' : 'Official site ↗';
+---
+<div class="logo-marquee" role="region" aria-label={ariaLabel} data-logo-marquee>
+  <button type="button" class="logo-marquee__nav logo-marquee__nav--prev" aria-label={prevLabel} data-logo-prev>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="logo-marquee__viewport" data-logo-viewport>
+    <ul class="logo-marquee__track" data-logo-track>
+      {[...partners, ...partners].map((p, i) => (
+        <li class="logo-marquee__item" aria-hidden={i >= partners.length ? 'true' : undefined}>
+          <article class="partner-card">
+            <div class="partner-card__logo">
+              {p.logo ? (
+                <img src={p.logo} alt={p.name[lang]} loading="lazy" />
+              ) : (
+                <span class="partner-card__logo-fallback">{p.name[lang]}</span>
+              )}
+            </div>
+            <h3 class="partner-card__name">{p.name[lang]}</h3>
+            {p.description && <p class="partner-card__desc">{p.description[lang]}</p>}
+            {p.website && (
+              <a
+                class="partner-card__link"
+                href={p.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                tabindex={i >= partners.length ? -1 : 0}
+                aria-hidden={i >= partners.length ? 'true' : undefined}
+              >
+                {linkLabel}
+              </a>
+            )}
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <button type="button" class="logo-marquee__nav logo-marquee__nav--next" aria-label={nextLabel} data-logo-next>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<script>
+  const PX_PER_SECOND = 30;
+  const RESUME_DELAY_MS = 1200;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-logo-marquee]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('[data-logo-track]');
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-logo-prev]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-logo-next]');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    let offset = 0;
+    let paused = prefersReduced;
+    let resumeTimer: number | null = null;
+    let lastTs = 0;
+    let halfWidth = 0;
+
+    const measure = () => {
+      halfWidth = track.scrollWidth / 2;
+    };
+
+    const apply = () => {
+      track.style.transform = `translateX(${-offset}px)`;
+    };
+
+    const itemStep = () => {
+      const first = track.querySelector<HTMLElement>('.logo-marquee__item');
+      if (!first) return 260;
+      const style = getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
+      return first.getBoundingClientRect().width + gap;
+    };
+
+    const wrap = (v: number) => {
+      if (!halfWidth) return v;
+      let next = v % halfWidth;
+      if (next < 0) next += halfWidth;
+      return next;
+    };
+
+    const stepFn = (ts: number) => {
+      if (!lastTs) lastTs = ts;
+      const dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+      if (!paused && halfWidth) {
+        offset = wrap(offset + PX_PER_SECOND * dt);
+        apply();
+      }
+      requestAnimationFrame(stepFn);
+    };
+
+    const nudge = (direction: 1 | -1) => {
+      const stepPx = itemStep();
+      paused = true;
+      track.classList.add('is-animating');
+      offset = wrap(offset + direction * stepPx);
+      apply();
+      window.setTimeout(() => track.classList.remove('is-animating'), 380);
+      if (resumeTimer) window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => { paused = prefersReduced; }, RESUME_DELAY_MS);
+    };
+
+    prevBtn.addEventListener('click', () => nudge(-1));
+    nextBtn.addEventListener('click', () => nudge(1));
+
+    root.addEventListener('mouseenter', () => { paused = true; });
+    root.addEventListener('mouseleave', () => {
+      if (resumeTimer) { window.clearTimeout(resumeTimer); resumeTimer = null; }
+      paused = prefersReduced;
+    });
+    root.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    root.addEventListener('touchend', () => {
+      if (resumeTimer) window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => { paused = prefersReduced; }, RESUME_DELAY_MS);
+    }, { passive: true });
+
+    window.addEventListener('resize', measure);
+
+    const imgs = Array.from(track.querySelectorAll('img')) as HTMLImageElement[];
+    if (imgs.length === 0) {
+      measure();
+    } else {
+      Promise.all(
+        imgs.map((img) =>
+          img.complete
+            ? Promise.resolve()
+            : new Promise<void>((r) => {
+                img.addEventListener('load', () => r(), { once: true });
+                img.addEventListener('error', () => r(), { once: true });
+              }),
+        ),
+      ).then(measure);
+      measure();
+    }
+
+    requestAnimationFrame(stepFn);
+  });
+</script>
+
+<style>
+  .logo-marquee {
+    position: relative;
+    margin: 2rem 0 1rem;
+    padding: 0.5rem 3rem;
+  }
+  .logo-marquee__viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+  .logo-marquee__track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+    will-change: transform;
+  }
+  .logo-marquee__track.is-animating {
+    transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .logo-marquee__item {
+    flex: 0 0 auto;
+  }
+  .partner-card {
+    width: 240px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 1rem 1rem 1.1rem;
+    background: #fff;
+    border: 1px solid rgba(23, 54, 93, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(23, 54, 93, 0.06);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  }
+  .partner-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(210, 31, 70, 0.28);
+    box-shadow: 0 18px 36px rgba(23, 54, 93, 0.12);
+  }
+  .partner-card__logo {
+    height: 92px;
+    display: grid;
+    place-items: center;
+    padding: 0.5rem;
+    background: #fafafa;
+    border-radius: 6px;
+  }
+  .partner-card__logo img {
+    max-width: 90%;
+    max-height: 72px;
+    object-fit: contain;
+  }
+  .partner-card__logo-fallback {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.25;
+    color: var(--color-fg);
+  }
+  .partner-card__name {
+    margin: 0;
+    font-family: var(--font-display, inherit);
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-fg);
+  }
+  .partner-card__desc {
+    margin: 0;
+    font-size: 0.83rem;
+    line-height: 1.45;
+    color: var(--color-muted, var(--color-fg));
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .partner-card__link {
+    margin-top: auto;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    align-self: flex-start;
+  }
+  .partner-card__link:hover { text-decoration-thickness: 2px; }
+
+  .logo-marquee__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    color: var(--color-fg, #1c2d5b);
+    border: 1px solid rgba(23, 54, 93, 0.18);
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(23, 54, 93, 0.1);
+    cursor: pointer;
+    transition: transform 200ms ease, background 200ms ease, color 200ms ease, border-color 200ms ease;
+  }
+  .logo-marquee__nav svg { width: 1rem; height: 1rem; }
+  .logo-marquee__nav:hover {
+    background: var(--color-accent, #d21f46);
+    color: #fff;
+    border-color: var(--color-accent, #d21f46);
+    transform: translateY(-50%) scale(1.06);
+  }
+  .logo-marquee__nav:focus-visible {
+    outline: 2px solid var(--color-accent, #d21f46);
+    outline-offset: 3px;
+  }
+  .logo-marquee__nav--prev { left: 0; }
+  .logo-marquee__nav--next { right: 0; }
+
+  @media (max-width: 720px) {
+    .logo-marquee { padding: 0.5rem 2rem; }
+    .partner-card { width: 200px; padding: 0.85rem; }
+    .partner-card__logo { height: 78px; }
+    .partner-card__logo img { max-height: 60px; }
+    .logo-marquee__track { gap: 0.85rem; }
+    .logo-marquee__nav { width: 1.9rem; height: 1.9rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .partner-card,
+    .logo-marquee__nav,
+    .logo-marquee__track,
+    .logo-marquee__track.is-animating { transition: none; }
+  }
+</style>

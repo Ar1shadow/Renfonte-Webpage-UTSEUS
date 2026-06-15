@@ -1,0 +1,259 @@
+[
+  {
+    "slug": "alstom",
+    "name": { "fr": "Alstom", "en": "Alstom", "zh": "阿尔斯通" },
+    "description": {
+      "fr": "Groupe français leader des solutions ferroviaires et de mobilité durable.",
+      "en": "French global leader in rail transport and sustainable mobility solutions.",
+      "zh": "法国轨道交通与可持续出行解决方案全球领导者。"
+    },
+    "website": "https://www.alstom.com",
+    "logo": "/images/logos/ALSTOM.jpeg"
+  },
+  {
+    "slug": "aden",
+    "name": { "fr": "Aden Group", "en": "Aden Group", "zh": "埃顿集团" },
+    "description": {
+      "fr": "Groupe sino-français de facility management intégré, basé à Shanghai.",
+      "en": "Sino-French integrated facility management group, headquartered in Shanghai.",
+      "zh": "总部位于上海的中法综合设施管理集团。"
+    },
+    "website": "https://www.adengroup.com",
+    "logo": "/images/logos/Aden 埃顿.png"
+  },
+  {
+    "slug": "air-liquide",
+    "name": { "fr": "Air Liquide", "en": "Air Liquide", "zh": "液化空气" },
+    "description": {
+      "fr": "Leader mondial français des gaz industriels, médicaux et de l’hydrogène.",
+      "en": "French world leader in industrial and medical gases and hydrogen.",
+      "zh": "法国工业气体、医用气体与氢能源全球领导者。"
+    },
+    "website": "https://www.airliquide.com",
+    "logo": "/images/logos/Air Liquide.jpg"
+  },
+  {
+    "slug": "akila",
+    "name": { "fr": "Akila", "en": "Akila", "zh": "Akila" },
+    "description": {
+      "fr": "Plateforme de jumeaux numériques pour bâtiments et infrastructures durables.",
+      "en": "Digital twin platform for sustainable buildings and infrastructure.",
+      "zh": "面向可持续建筑与基础设施的数字孪生平台。"
+    },
+    "website": "https://www.akila.ai",
+    "logo": "/images/logos/Akila.png"
+  },
+  {
+    "slug": "eaton",
+    "name": { "fr": "Eaton", "en": "Eaton", "zh": "伊顿" },
+    "description": {
+      "fr": "Groupe industriel américain spécialiste de la gestion intelligente de l’énergie.",
+      "en": "American industrial group specializing in intelligent power management.",
+      "zh": "美国能源智能管理工业集团。"
+    },
+    "website": "https://www.eaton.com",
+    "logo": "/images/logos/Eaton Corporation.png"
+  },
+  {
+    "slug": "s-chuang-china",
+    "name": { "fr": "S创中国", "en": "S-Chuang China", "zh": "S创中国" },
+    "description": {
+      "fr": "Plateforme franco-chinoise d’innovation et d’entrepreneuriat étudiant.",
+      "en": "Sino-French platform for student innovation and entrepreneurship.",
+      "zh": "中法学生创新创业合作平台。"
+    },
+    "website": "https://www.s-union.cn",
+    "logo": "/images/logos/S创中国.jpg"
+  },
+  {
+    "slug": "valeo",
+    "name": { "fr": "Valeo", "en": "Valeo", "zh": "法雷奥" },
+    "description": {
+      "fr": "Équipementier automobile français, leader des technologies d’électrification et d’ADAS.",
+      "en": "French automotive supplier, leader in electrification and ADAS technologies.",
+      "zh": "法国汽车零部件供应商，电气化与 ADAS 技术领导者。"
+    },
+    "website": "https://www.valeo.com",
+    "logo": "/images/logos/Valeo.png"
+  },
+  {
+    "slug": "yanfeng",
+    "name": { "fr": "Yanfeng", "en": "Yanfeng", "zh": "延锋汽车" },
+    "description": {
+      "fr": "Premier équipementier chinois en habitacles automobiles, partenaire mondial des constructeurs.",
+      "en": "China’s top automotive interiors supplier, global partner of major OEMs.",
+      "zh": "中国领先的汽车内饰供应商，服务全球主机厂。"
+    },
+    "website": "https://www.yanfeng.com",
+    "logo": "/images/logos/Yanfeng Automotive.jpg"
+  },
+  {
+    "slug": "zte",
+    "name": { "fr": "ZTE", "en": "ZTE", "zh": "中兴通讯" },
+    "description": {
+      "fr": "Groupe chinois de télécommunications et d’équipements réseau 5G.",
+      "en": "Chinese telecommunications and 5G network equipment group.",
+      "zh": "中国通信与 5G 网络设备厂商。"
+    },
+    "website": "https://www.zte.com.cn",
+    "logo": "/images/logos/ZTE中兴.jpeg"
+  },
+  {
+    "slug": "actia",
+    "name": { "fr": "ACTIA", "en": "ACTIA", "zh": "ACTIA" },
+    "description": {
+      "fr": "Groupe français d’électronique embarquée et de télématique automobile.",
+      "en": "French group specializing in embedded electronics and automotive telematics.",
+      "zh": "法国汽车嵌入式电子与车联网集团。"
+    },
+    "website": "https://www.actia.com",
+    "logo": "/images/logos/actia.jpg"
+  },
+  {
+    "slug": "alibaba-cloud",
+    "name": { "fr": "Alibaba Cloud", "en": "Alibaba Cloud", "zh": "阿里云" },
+    "description": {
+      "fr": "Filiale cloud d’Alibaba, premier fournisseur de services cloud en Asie.",
+      "en": "Alibaba’s cloud arm, Asia’s leading cloud services provider.",
+      "zh": "阿里巴巴旗下云服务公司，亚洲领先云厂商。"
+    },
+    "website": "https://www.alibabacloud.com",
+    "logo": "/images/logos/alibaba cloud.png"
+  },
+  {
+    "slug": "dassault-systemes",
+    "name": { "fr": "Dassault Systèmes", "en": "Dassault Systèmes", "zh": "达索系统" },
+    "description": {
+      "fr": "Éditeur français de logiciels 3D, PLM et de plateformes d’expérience industrielle.",
+      "en": "French publisher of 3D design, PLM and industrial experience platforms.",
+      "zh": "法国 3D 设计、PLM 与工业体验平台软件商。"
+    },
+    "website": "https://www.3ds.com",
+    "logo": "/images/logos/dassault.png"
+  },
+  {
+    "slug": "engie",
+    "name": { "fr": "ENGIE", "en": "ENGIE", "zh": "ENGIE" },
+    "description": {
+      "fr": "Groupe énergétique français engagé dans la transition vers les énergies renouvelables.",
+      "en": "French energy group committed to the renewable energy transition.",
+      "zh": "致力于可再生能源转型的法国综合能源集团。"
+    },
+    "website": "https://www.engie.com",
+    "logo": "/images/logos/engie.jpeg"
+  },
+  {
+    "slug": "faurecia",
+    "name": { "fr": "Faurecia (Forvia)", "en": "Faurecia (Forvia)", "zh": "佛瑞亚 (Faurecia)" },
+    "description": {
+      "fr": "Équipementier automobile français, désormais part du groupe Forvia.",
+      "en": "French automotive supplier, now part of the Forvia group.",
+      "zh": "法国汽车零部件制造商，现为佛瑞亚集团成员。"
+    },
+    "website": "https://www.forvia.com",
+    "logo": "/images/logos/faurecia.jpeg"
+  },
+  {
+    "slug": "inhand-networks",
+    "name": { "fr": "InHand Networks", "en": "InHand Networks", "zh": "映翰通" },
+    "description": {
+      "fr": "Spécialiste chinois des routeurs IoT industriels et des solutions edge computing.",
+      "en": "Chinese specialist in industrial IoT routers and edge computing solutions.",
+      "zh": "中国工业 IoT 路由器与边缘计算解决方案厂商。"
+    },
+    "website": "https://www.inhandnetworks.com",
+    "logo": "/images/logos/inhand networks.jpg"
+  },
+  {
+    "slug": "la-french-tech-shanghai",
+    "name": { "fr": "La French Tech Shanghai", "en": "La French Tech Shanghai", "zh": "法国科技 上海" },
+    "description": {
+      "fr": "Communauté officielle des startups françaises et de l’innovation à Shanghai.",
+      "en": "Official community of French startups and innovation in Shanghai.",
+      "zh": "上海法国创业者与创新生态官方社区。"
+    },
+    "website": "https://lafrenchtech.com",
+    "logo": "/images/logos/la french tech SHANGHAI.jpg"
+  },
+  {
+    "slug": "saint-gobain",
+    "name": { "fr": "Saint-Gobain", "en": "Saint-Gobain", "zh": "圣戈班" },
+    "description": {
+      "fr": "Leader mondial français des matériaux de construction durable et de l’habitat léger.",
+      "en": "French world leader in sustainable construction materials and light habitat.",
+      "zh": "法国可持续建材与轻型住宅全球领导者。"
+    },
+    "website": "https://www.saint-gobain.com",
+    "logo": "/images/logos/saint-gobain.png"
+  },
+  {
+    "slug": "sanyou",
+    "name": { "fr": "Sanyou", "en": "Sanyou", "zh": "三友" },
+    "description": {
+      "fr": "Partenaire industriel chinois engagé auprès de l’UTSEUS.",
+      "en": "Chinese industrial partner engaged with UTSEUS.",
+      "zh": "UTSEUS 中国工业合作伙伴。"
+    },
+    "logo": "/images/logos/sanyou.png"
+  },
+  {
+    "slug": "siveco-china",
+    "name": { "fr": "Siveco China", "en": "Siveco China", "zh": "西维科" },
+    "description": {
+      "fr": "Éditeur français-en-Chine de logiciels de GMAO et de maintenance industrielle.",
+      "en": "French-in-China publisher of CMMS and industrial maintenance software.",
+      "zh": "扎根中国的法国工业设备运维（CMMS）软件商。"
+    },
+    "website": "https://www.sivecochina.com",
+    "logo": "/images/logos/siveco.jpg"
+  },
+  {
+    "slug": "qiantang",
+    "name": { "fr": "Qiantang Telecom", "en": "Qiantang Telecom", "zh": "乾唐通信" },
+    "description": {
+      "fr": "Opérateur chinois de communication d’entreprise et de visioconférence HD, agent agréé full-service de China Telecom Shanghai et distributeur clé en Chine de l’Est de Lifesize, Polycom et Tandberg.",
+      "en": "Chinese enterprise communications operator and HD videoconferencing pioneer; full-service authorised agent of China Telecom Shanghai and East-China core distributor for Lifesize, Polycom and Tandberg.",
+      "zh": "专注企业通信与高清视频会议的中国服务商，中国电信上海分公司全业务授权代理商，Lifesize、Polycom、Tandberg 华东区核心经销商。"
+    },
+    "website": "http://www.qtct.com.cn",
+    "logo": "/images/logos/乾唐通信.png"
+  },
+  {
+    "slug": "schneider-electric",
+    "name": { "fr": "Schneider Electric", "en": "Schneider Electric", "zh": "施耐德电气" },
+    "description": {
+      "fr": "Groupe français leader de la gestion de l’énergie et de l’automatisation.",
+      "en": "French global leader in energy management and automation.",
+      "zh": "法国能源管理与自动化全球领导者。"
+    },
+    "website": "https://www.se.com",
+    "logo": "/images/logos/施耐德.png"
+  },
+  {
+    "slug": "hanjie",
+    "name": { "fr": "Hanjie", "en": "Hanjie", "zh": "汉洁" },
+    "description": {
+      "fr": "Partenaire chinois de l’UTSEUS dans le secteur de la propreté et de l’environnement.",
+      "en": "Chinese UTSEUS partner active in cleaning and environment services.",
+      "zh": "活跃于清洁与环境服务领域的 UTSEUS 中国合作伙伴。"
+    },
+    "website": "https://www.haaenclean.com/#/Dashboard",
+    "logo": "/images/logos/汉洁.png"
+  },
+  {
+    "slug": "micropole-china",
+    "name": { "fr": "Micropole China", "en": "Micropole China", "zh": "秘珀（上海）软件科技" },
+    "logo": "/images/logos/秘珀(上海)科技有限公司.png"
+  },
+  {
+    "slug": "decathlon",
+    "name": { "fr": "Decathlon", "en": "Decathlon", "zh": "迪卡侬" },
+    "description": {
+      "fr": "Distributeur français mondial d’articles de sport accessibles.",
+      "en": "French global retailer of accessible sports gear and equipment.",
+      "zh": "法国全球大众体育用品零售商。"
+    },
+    "website": "https://www.decathlon.com.cn",
+    "logo": "/images/logos/迪卡侬.jpg"
+  }
+]

@@ -8,19 +8,16 @@ const details: Record<Lang, string[]> = {
     'A long-running partnership between the French Universities of Technology network and Shanghai University.',
     'A student community moving between Shanghai, France and the UT network.',
     'Computer, mechanical, biological and materials engineering paths.',
-    'A research ecosystem structured around Sino-French urban and engineering topics.',
   ],
   fr: [
     'Un partenariat durable entre le réseau des universités de technologie françaises et l’Université de Shanghai.',
     'Une communauté étudiante en circulation entre Shanghai, la France et le réseau UT.',
     'Informatique, mécanique, génie biologique et science des matériaux.',
-    'Un écosystème de recherche structuré autour de sujets urbains et d’ingénierie sino-français.',
   ],
   zh: [
     '法国技术大学网络与上海大学长期合作形成的中法工程教育平台。',
     '连接上海、法国与 UT 网络的双向学生流动。',
     '计算机工程、机械工程、生物工程和材料科学四个方向。',
-    '围绕中法城市与工程议题展开的科研合作网络。',
   ],
 };
 
@@ -30,23 +27,12 @@ const marker: Record<Lang, string> = {
   zh: '【UI-TASK-04】 关键数字卡片重设计',
 };
 
-const visualTypes = ['timeline', 'exchange', 'tracks', 'research'];
+const visualTypes = ['timeline', 'exchange', 'tracks'];
 const trackIconSrcs = [
   '/images/icons/generated/major-computer-engineering.png',
   '/images/icons/generated/major-mechanical-engineering.png',
   '/images/icons/generated/major-biological-engineering.png',
   '/images/icons/generated/major-materials-science.png',
-];
-
-const researchIconSrcs = [
-  '/images/icons/generated/project-smart-city.png',
-  '/images/icons/generated/project-urban-logistics.png',
-  '/images/icons/generated/project-building-energy.png',
-  '/images/icons/generated/project-safety-risk.png',
-  '/images/icons/generated/project-health-aging.png',
-  '/images/icons/generated/project-water-waste.png',
-  '/images/icons/generated/project-data-modeling.png',
-  '/images/icons/generated/project-connected-infrastructure.png',
 ];
 ---
 <section class="key-figures" aria-label={marker[lang]}>
@@ -86,14 +72,6 @@ const researchIconSrcs = [
                 <img src={iconSrc} alt="" loading="lazy" />
               </span>
             ))}
-          </div>
-        )}
-        {visualTypes[index] === 'research' && (
-          <div class="key-figure-research">
-            {researchIconSrcs.map((iconSrc) => (
-              <span><img src={iconSrc} alt="" loading="lazy" /></span>
-            ))}
-            <i></i>
           </div>
         )}
       </div>

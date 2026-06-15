@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+const entries = await getCollection('innovationContest');
+const rows = entries.map((e) => e.data).sort((a, b) => a.order - b.order);
+---
+<section class="contest" aria-labelledby="contest-heading">
+  <header class="contest__header">
+    <h3 id="contest-heading" class="contest__title">{t('courses.contest.title')}</h3>
+    <p class="contest__lead">{t('courses.contest.lead')}</p>
+  </header>
+  <ol class="contest__rows">
+    {rows.map((row) => (
+      <li class="contest-row">
+        <figure class="contest-row__figure">
+          <img src={row.image} alt={row.alt[lang]} loading="lazy" width="800" height="600" />
+        </figure>
+        <p class="contest-row__text">{row.paragraph[lang]}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .contest {
+    margin: 3rem 0 0;
+    padding-top: 2rem;
+    border-top: 2px solid var(--color-fg);
+  }
+  .contest__header {
+    margin-bottom: 2rem;
+  }
+  .contest__title {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display, inherit);
+    font-size: 1.75rem;
+    line-height: 1.15;
+    color: var(--color-fg);
+  }
+  .contest__lead {
+    margin: 0;
+    max-width: 56ch;
+    color: var(--color-muted, var(--color-fg));
+    opacity: 0.85;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .contest__rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .contest-row {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: 2rem;
+  }
+  .contest-row:nth-child(even) {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+  .contest-row:nth-child(even) .contest-row__figure {
+    order: 2;
+  }
+  .contest-row:nth-child(even) .contest-row__text {
+    order: 1;
+  }
+  .contest-row__figure {
+    margin: 0;
+    overflow: hidden;
+    border: 2px solid var(--color-fg);
+    background: var(--color-bg);
+    aspect-ratio: 4 / 3;
+  }
+  .contest-row__figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .contest-row__text {
+    margin: 0;
+    color: var(--color-fg);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  @media (max-width: 720px) {
+    .contest-row,
+    .contest-row:nth-child(even) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .contest-row:nth-child(even) .contest-row__figure { order: 0; }
+    .contest-row:nth-child(even) .contest-row__text { order: 0; }
+  }
+</style>

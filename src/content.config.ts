@@ -5,10 +5,9 @@ import { z } from 'astro/zod';
 const sectionId = z.enum([
   'hero',
   'about',
-  'mobility',
   'courses',
-  'complexcity',
-  'projects',
+  'campuslife',
+  'partners',
   'testimonials',
   'contact',
 ]);
@@ -30,17 +29,14 @@ const sections = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  loader: file('src/data/projects.json'),
+const partners = defineCollection({
+  loader: file('src/data/partners.json'),
   schema: z.object({
     slug: z.string(),
-    title: langTriad,
-    description: langTriad,
-    axis: z.enum(['modeling', 'safety', 'logistics', 'smart-buildings', 'culture']),
-    image: z.string(),
-    links: z
-      .array(z.object({ label: z.string(), url: z.url() }))
-      .optional(),
+    name: langTriad,
+    description: langTriad.optional(),
+    website: z.url().optional(),
+    logo: z.string(),
   }),
 });
 
@@ -68,4 +64,25 @@ const programs = defineCollection({
   }),
 });
 
-export const collections = { sections, projects, testimonials, programs };
+const clubs = defineCollection({
+  loader: file('src/data/clubs.json'),
+  schema: z.object({
+    slug: z.string(),
+    name: langTriad,
+    description: langTriad,
+    image: z.string(),
+    foundedYear: z.number().int(),
+  }),
+});
+
+const innovationContest = defineCollection({
+  loader: file('src/data/innovation-contest.json'),
+  schema: z.object({
+    order: z.number().int(),
+    image: z.string(),
+    alt: langTriad,
+    paragraph: langTriad,
+  }),
+});
+
+export const collections = { sections, partners, testimonials, programs, clubs, innovationContest };

@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import ClubCard from './ClubCard.astro';
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+const entries = await getCollection('clubs');
+const clubs = entries.map((e) => e.data);
+---
+<section class="campus-sub" aria-labelledby="clubs-heading">
+  <header class="campus-sub__header">
+    <h3 id="clubs-heading" class="campus-sub__heading">{t('campuslife.clubs.heading')}</h3>
+  </header>
+  <div class="campus-sub__stack">
+    {clubs.map((c) => <ClubCard club={c} lang={lang} />)}
+  </div>
+</section>
+
+<style>
+  .campus-sub__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+</style>

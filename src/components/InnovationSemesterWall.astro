@@ -1,0 +1,41 @@
+---
+import type { Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+
+const copy: Record<Lang, { heading: string; paragraphs: string[] }> = {
+  fr: {
+    heading: 'Semestre d’innovation à l’UTSEUS',
+    paragraphs: [
+      "À l’UTSEUS, ton sujet n’est pas un exercice de manuel mais un vrai problème d’ingénierie posé par une entreprise partenaire. Du projet de cours au stage de fin d’études, tu travailles en équipe sous la double tutelle d’un encadrant académique et d’un ingénieur en entreprise — de l’analyse du besoin à la mise en œuvre. C’est aussi le terrain où tu forges ta pensée d’ingénieur, ton sens du travail collectif et tes réflexes de gestion de projet.",
+      "Tu peux aussi rejoindre les forums industriels, les bootcamps d’innovation, les pitch days et les concours d’innovation et d’entrepreneuriat organisés par l’institut — porter tes travaux sur des scènes plus larges et rencontrer celles et ceux qui construisent comme toi.",
+      "Les laboratoires conjoints et les bases d’innovation co-créés avec nos partenaires industriels ouvrent une voie directe : tu utilises les équipements d’entreprises de pointe, tu rejoins des projets R&D en cours, et tu confrontes ce que tu as appris en cours au front de l’industrie.",
+    ],
+  },
+  en: {
+    heading: 'Innovation semester at UTSEUS',
+    paragraphs: [
+      "At UTSEUS, your topic is not a textbook exercise but a real engineering problem set by a partner company. From course projects to your graduation project, you work in teams co-supervised by an academic mentor and a company engineer — from problem analysis to implementation. This is where you sharpen engineering thinking, teamwork and project-management instincts.",
+      "You can also join the institute’s industry forums, innovation bootcamps, project pitch days and innovation & entrepreneurship contests — bring your work to a wider stage and meet the peers who are building, too.",
+      "Joint labs and innovation bases co-built with industrial partners open a direct channel: you use equipment from leading companies, join ongoing R&D, and put what you learn in class to work on the industrial frontline.",
+    ],
+  },
+  zh: {
+    heading: 'UTSEUS 创新学期',
+    paragraphs: [
+      "在 UTSEUS，你的课题不是教科书上的练习题，而是来自合作企业的真实工程难题。从课程设计到毕业设计，你将和队友组成项目团队，在校内导师和企业工程师的共同指导下，完成从问题分析到方案落地的全过程 —— 这也是你锻炼工程思维、团队协作与项目管理能力的真实场域。",
+      "你还可以参与学院组织的行业论坛、创新训练营、项目路演和创新创业大赛，把作品带到更大的舞台，认识同样在做事的同行者。",
+      "学院与企业共建的实验室和创新实践基地为你打开通道：使用一线企业的设备，加入正在推进的研发项目，把课堂学到的东西真正用在产业前沿。",
+    ],
+  },
+};
+
+const c = copy[lang];
+---
+<section class="campus-sub">
+  <header class="campus-sub__header">
+    <h3 class="campus-sub__heading">{c.heading}</h3>
+  </header>
+  <div class="campus-sub__text">
+    {c.paragraphs.map((p) => <p>{p}</p>)}
+  </div>
+</section>

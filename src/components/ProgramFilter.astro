@@ -2,39 +2,9 @@
 import { getCollection } from 'astro:content';
 import ProgramCard from './ProgramCard.astro';
 import type { Lang } from '../i18n/ui';
-import { useTranslations } from '../i18n/utils';
 const { lang } = Astro.props as { lang: Lang };
-const t = useTranslations(lang);
 const programs = await getCollection('programs');
 ---
-<div class="program-filter space-y-6">
-  <p class="program-filter__marker program-filter__marker--cards">【UI-TASK-06】 Mobility card visual redesign</p>
-  <p class="program-filter__marker">【UI-TASK-05】 Mobility filter redesign</p>
-  <div class="program-filter__tabs" role="tablist" aria-label="Mobility programme filters">
-    <button type="button" role="tab" data-filter="all" aria-selected="true" class="program-filter__tab">
-      <span aria-hidden="true"></span>{t('programs.filter.all')}
-    </button>
-    <button type="button" role="tab" data-filter="chinese-students" aria-selected="false" class="program-filter__tab">
-      <span aria-hidden="true"></span>{t('programs.filter.chinese')}
-    </button>
-    <button type="button" role="tab" data-filter="incoming-students" aria-selected="false" class="program-filter__tab">
-      <span aria-hidden="true"></span>{t('programs.filter.incoming')}
-    </button>
-  </div>
-  <div class="program-grid" id="programs-grid">
-    {programs.map((p) => <ProgramCard program={p.data} lang={lang} />)}
-  </div>
+<div class="program-grid" id="programs-grid">
+  {programs.map((p) => <ProgramCard program={p.data} lang={lang} />)}
 </div>
-<script>
-  const grid = document.getElementById('programs-grid')!;
-  const filterTabs = document.querySelectorAll<HTMLElement>('.program-filter [data-filter]');
-  filterTabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const f = (btn as HTMLElement).dataset.filter!;
-      filterTabs.forEach(b => b.setAttribute('aria-selected', String(b === btn)));
-      grid.querySelectorAll<HTMLElement>('[data-audience]').forEach(card => {
-        card.style.display = (f === 'all' || card.dataset.audience === f) ? '' : 'none';
-      });
-    });
-  });
-</script>

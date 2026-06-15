@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "creation-club",
+    "name": {
+      "en": "UTSEUS Creation Club",
+      "fr": "UTSEUS Creation Club",
+      "zh": "中欧创幻社"
+    },
+    "foundedYear": 2007,
+    "image": "/images/creation club.jpg",
+    "description": {
+      "en": "Founded in 2007, the Creation Club is jointly supported by UTSEUS and Shanghai University’s Engineering Training Centre, with its own maker lab. Members build robots, exchange mechanical-design and programming skills, and visit innovation events together — building autonomy and teamwork through hands-on engineering.",
+      "fr": "Créé en 2007 et soutenu conjointement par UTSEUS et le Centre de formation à l’ingénierie de Shanghai University, le Creation Club dispose de son propre fab-lab. Les membres assemblent des robots, partagent leurs connaissances en conception mécanique et en programmation, et visitent des événements d’innovation : autonomie et travail collectif par la pratique.",
+      "zh": "中欧创幻社 (UTSEUS Creation Club) 成立于 2007 年，享有中欧工程技术学院和上海大学工程训练中心双方共同资源支持，拥有自己的科创实验室。社团活动以搭建机器人、分享学习机械设计和程序设计等学科知识为主，同时会组织会员一起参观科技创新活动，培养会员独立自主和团队合作解决问题的能力。"
+    }
+  },
+  {
+    "slug": "french-club",
+    "name": {
+      "en": "French Club of UTSEUS",
+      "fr": "Club Français de l’UTSEUS",
+      "zh": "中欧学院法语社"
+    },
+    "foundedYear": 2005,
+    "image": "/images/french club.png",
+    "description": {
+      "en": "Founded in 2005 alongside UTSEUS itself, the French Club is a meeting point for the institute’s French learners and Francophiles. Each semester it runs a picnic (autumn or winter), a ball (spring), city-wide treasure hunts and a Christmas evening — and shares Sino-French event briefs, study-abroad accounts, mini French lessons and French poetry on its WeChat channel.",
+      "fr": "Né en 2005 avec la création d’UTSEUS, le Club Français rassemble les apprenants de français de l’institut et les francophiles. Chaque semestre : pique-nique (automne ou hiver), bal de printemps, course d’orientation en ville, soirée de Noël. Son canal WeChat diffuse l’agenda d’événements sino-français, des récits d’expatriation, des micro-cours de français et des poèmes — une plateforme complète autour de la langue et de la culture françaises.",
+      "zh": "中欧学院法语社 (French Club of UTSEUS) 始建于 2005 年，随中欧学院的成立而创办，为中欧学院的法语学习者以及其他法语爱好者提供交流平台。社团每学期组织野餐会（秋季或冬季学期）、舞会（春季学期）、城市越野、圣诞晚会等活动，促进学院中外学生的交流，丰富课余生活；同时在微信平台上定期推送中法学生活动预告、法国留学感想、法语教学小视频、法国诗歌以及各地文化等内容，致力于打造全方位的法语及法国文化平台。"
+    }
+  }
+]

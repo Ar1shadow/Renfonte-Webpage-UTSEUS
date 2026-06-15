@@ -15,37 +15,7 @@
     "duration": "5 years"
   },
   {
-    "slug": "sciences-humanities",
-    "audience": "incoming-students",
-    "title": {
-      "en": "Sciences and Humanities in China",
-      "fr": "Sciences et humanités en Chine",
-      "zh": "中国科学与人文学期"
-    },
-    "description": {
-      "en": "An exchange semester for second-year UT students who want a first international experience while studying alongside Chinese students.",
-      "fr": "Un semestre d’échange pour les étudiants de deuxième année du réseau UT souhaitant vivre une première expérience internationale avec des étudiants chinois.",
-      "zh": "面向法国 UT 二年级学生的交流学期，帮助他们在与中国学生共同学习中获得第一次国际经历。"
-    },
-    "duration": "1 semester"
-  },
-  {
-    "slug": "international-engineer",
-    "audience": "incoming-students",
-    "title": {
-      "en": "International Engineer",
-      "fr": "Ingénieur international",
-      "zh": "国际工程师学期"
-    },
-    "description": {
-      "en": "A Master-level semester built around professional courses, company projects and meetings with expatriate engineers in Shanghai.",
-      "fr": "Un semestre de niveau master articulé autour de cours professionnalisants, de projets en entreprise et de rencontres avec des ingénieurs expatriés à Shanghai.",
-      "zh": "面向硕士阶段学生的学期项目，结合专业课程、企业项目以及与在沪工程师的交流。"
-    },
-    "duration": "1 semester"
-  },
-  {
-    "slug": "language-culture",
+    "slug": "language-culture-innovation",
     "audience": "incoming-students",
     "title": {
       "en": "Language, culture and innovation",
@@ -53,9 +23,9 @@
       "zh": "语言、文化与创新"
     },
     "description": {
-      "en": "A multidisciplinary immersion semester for students and young professionals interested in innovation for smart and connected cities.",
-      "fr": "Un semestre d’immersion pluridisciplinaire pour étudiants et jeunes professionnels autour de l’innovation dans les villes intelligentes et connectées.",
-      "zh": "面向不同学科背景学生与青年专业人士的沉浸式学期，主题聚焦智慧互联城市中的创新。"
+      "en": "An incoming-mobility track from bachelor to master level, weaving together Sciences and Humanities in China, the International Engineer semester and a Language, culture and innovation immersion: professional courses, company projects and language immersion focused on smart, connected cities.",
+      "fr": "Un parcours en mobilité entrante du niveau licence au master, articulant Sciences et humanités en Chine, le semestre Ingénieur international et l’immersion Langue, culture et innovation : cours professionnalisants, projets en entreprise et immersion linguistique autour des villes intelligentes et connectées.",
+      "zh": "面向来沪交换生与青年专业人士的本硕阶段沉浸式学期，融合“中国科学与人文”“国际工程师”“语言、文化与创新”三大方向：专业课程、企业项目与语言文化沉浸，聚焦智慧互联城市的创新议题。"
     },
     "duration": "1 semester"
   }

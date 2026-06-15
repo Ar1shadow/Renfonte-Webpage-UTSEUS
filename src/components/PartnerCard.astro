@@ -1,0 +1,31 @@
+---
+import type { Lang } from '../i18n/ui';
+interface PartnerData {
+  slug: string;
+  name: { en: string; fr: string; zh: string };
+  description?: { en: string; fr: string; zh: string };
+  website?: string;
+  logo: string;
+}
+interface Props { partner: PartnerData; lang: Lang; ariaHidden?: boolean; }
+const { partner, lang, ariaHidden = false } = Astro.props;
+const linkLabel = lang === 'fr' ? 'Site officiel' : lang === 'zh' ? '官网' : 'Official site';
+---
+<article class="partner-card" aria-hidden={ariaHidden ? 'true' : undefined}>
+  <div class="partner-card__logo">
+    <img src={partner.logo} alt={partner.name[lang]} loading="lazy" />
+  </div>
+  <h3 class="partner-card__name">{partner.name[lang]}</h3>
+  {partner.description && <p class="partner-card__desc">{partner.description[lang]}</p>}
+  {partner.website && (
+    <a
+      class="partner-card__link"
+      href={partner.website}
+      target="_blank"
+      rel="noopener noreferrer"
+      tabindex={ariaHidden ? -1 : 0}
+    >
+      {linkLabel} ↗
+    </a>
+  )}
+</article>
