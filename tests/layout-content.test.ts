@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import contestRows from '../src/data/innovation-contest.json';
 import clubs from '../src/data/clubs.json';
@@ -20,9 +20,9 @@ describe('layout content contracts', () => {
   it('keeps three contest rows with images for the visual cards', () => {
     expect(contestRows).toHaveLength(3);
     expect(contestRows.map((row) => row.image)).toEqual([
-      "/images/concours d'innovation_3.jpg",
-      "/images/concours d'innovation_4.jpg",
-      "/images/concours d'innovation_5.jpg",
+      "/images/vie d'etudient/10.jpg",
+      "/images/vie d'etudient/11.jpg",
+      "/images/vie d'etudient/12.jpg",
     ]);
   });
 
@@ -80,6 +80,27 @@ describe('layout content contracts', () => {
     expect(source).toContain("c.paragraphs.join(' ')");
   });
 
+  it('scrolls the campus photo wall with the same continuous loop model as partner logos', () => {
+    const source = readFileSync(join(root, 'src', 'components', 'CampusPhotoWall.astro'), 'utf8');
+
+    expect(source).toContain('PX_PER_SECOND');
+    expect(source).toContain('requestAnimationFrame(stepFn)');
+    expect(source).toContain('secondSetFirst.offsetLeft - first.offsetLeft');
+    expect(source).toContain('offset = wrap(offset + PX_PER_SECOND * dt);');
+    expect(source).toContain('track.style.transform');
+    expect(source).not.toContain('viewport.scrollBy');
+  });
+
+  it('loads every image from the student life photo folder for the campus photo wall', () => {
+    const source = readFileSync(join(root, 'src', 'components', 'CampusPhotoWall.astro'), 'utf8');
+    const folderImages = readdirSync(join(root, 'public', 'images', "vie d'etudient")).filter((file) => file.endsWith('.jpg'));
+
+    expect(folderImages).toHaveLength(13);
+    expect(source).toContain('readdirSync(photoDir)');
+    expect(source).toContain('supportedPhotoExtensions');
+    expect(source).not.toContain("/images/vie d'etudient/2.jpg");
+  });
+
   it('renders the innovation contest as stats plus feature cards', () => {
     const source = readFileSync(join(root, 'src', 'components', 'InnovationContest.astro'), 'utf8');
 
@@ -95,5 +116,19 @@ describe('layout content contracts', () => {
     expect(source).not.toContain('summarize(row.paragraph[lang])');
     expect(source).not.toContain('contest__graphic');
     expect(source).not.toContain('contest-row__text');
+  });
+
+  it('keeps testimonial cards draggable while adding a custom visual block and stronger identity styling', () => {
+    const source = readFileSync(join(root, 'src', 'components', 'TestimonialCarousel.astro'), 'utf8');
+
+    expect(source).toContain('overflow-x-auto snap-x snap-mandatory');
+    expect(source).toContain('testimonial-card__initials');
+    expect(source).toContain('{initials(t.data.name)}');
+    expect(source).toContain('testimonial-card__visual');
+    expect(source).not.toContain('src={t.data.photo}');
+    expect(source).toContain('box-shadow: none;');
+    expect(source).toContain('testimonial-card__name');
+    expect(source).toContain('testimonial-card__meta');
+    expect(source).toContain('testimonial-card__quote-mark');
   });
 });

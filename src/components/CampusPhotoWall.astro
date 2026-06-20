@@ -1,14 +1,20 @@
 ---
-const photos = [
-  { src: "/images/vie d'etudient/2.jpg", alt: 'UTSEUS student life photo 2' },
-  { src: "/images/vie d'etudient/5.jpg", alt: 'UTSEUS student life photo 5' },
-  { src: "/images/vie d'etudient/6.jpg", alt: 'UTSEUS student life photo 6' },
-  { src: "/images/vie d'etudient/8.jpg", alt: 'UTSEUS student life photo 8' },
-  { src: "/images/vie d'etudient/9.jpg", alt: 'UTSEUS student life photo 9' },
-  { src: "/images/vie d'etudient/10.jpg", alt: 'UTSEUS student life photo 10' },
-  { src: "/images/vie d'etudient/11.jpg", alt: 'UTSEUS student life photo 11' },
-  { src: "/images/vie d'etudient/12.jpg", alt: 'UTSEUS student life photo 12' },
-];
+import { readdirSync } from 'node:fs';
+import { extname, join, parse } from 'node:path';
+
+const photoFolder = "vie d'etudient";
+const photoDir = join(process.cwd(), 'public', 'images', photoFolder);
+const supportedPhotoExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+const photos = readdirSync(photoDir)
+  .filter((file) => supportedPhotoExtensions.has(extname(file).toLowerCase()))
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+  .map((file) => {
+    const label = parse(file).name;
+    return {
+      src: `/images/${photoFolder}/${file}`,
+      alt: `UTSEUS student life photo ${label}`,
+    };
+  });
 const loopPhotos = [...photos, ...photos];
 ---
 
@@ -35,34 +41,132 @@ const loopPhotos = [...photos, ...photos];
 </section>
 
 <script>
-  document.querySelectorAll('[data-campus-photo-wall]').forEach((wall) => {
-    const viewport = wall.querySelector('[data-campus-photo-viewport]');
-    const track = wall.querySelector('[data-campus-photo-track]');
-    const prev = wall.querySelector('[data-campus-photo-prev]');
-    const next = wall.querySelector('[data-campus-photo-next]');
-    if (!(viewport instanceof HTMLElement) || !(track instanceof HTMLElement) || !(prev instanceof HTMLButtonElement) || !(next instanceof HTMLButtonElement)) return;
+  const PX_PER_SECOND = 34;
+  const RESUME_DELAY_MS = 180;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const step = () => {
-      const first = track.querySelector('.campus-photo-wall__card');
-      if (!(first instanceof HTMLElement)) return 360;
-      const gap = parseFloat(getComputedStyle(track).gap || '0') || 0;
+  document.querySelectorAll<HTMLElement>('[data-campus-photo-wall]').forEach((wall) => {
+    const track = wall.querySelector<HTMLElement>('[data-campus-photo-track]');
+    const prev = wall.querySelector<HTMLButtonElement>('[data-campus-photo-prev]');
+    const next = wall.querySelector<HTMLButtonElement>('[data-campus-photo-next]');
+    if (!track || !prev || !next) return;
+
+    let offset = 0;
+    let paused = prefersReduced;
+    let resumeTimer: number | null = null;
+    let lastTs = 0;
+    let halfWidth = 0;
+    let nudgeFrame: number | null = null;
+
+    const measure = () => {
+      const cards = Array.from(track.querySelectorAll<HTMLElement>('.campus-photo-wall__card'));
+      const midpoint = cards.length / 2;
+      const first = cards[0];
+      const secondSetFirst = cards[midpoint];
+      halfWidth = first && secondSetFirst
+        ? secondSetFirst.offsetLeft - first.offsetLeft
+        : track.scrollWidth / 2;
+    };
+
+    const apply = () => {
+      track.style.transform = `translateX(${-offset}px)`;
+    };
+
+    const itemStep = () => {
+      const first = track.querySelector<HTMLElement>('.campus-photo-wall__card');
+      if (!first) return 360;
+      const style = getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
       return first.getBoundingClientRect().width + gap;
     };
 
-    const normalize = () => {
-      const half = track.scrollWidth / 2;
-      if (viewport.scrollLeft >= half) viewport.scrollLeft -= half;
-      if (viewport.scrollLeft < 0) viewport.scrollLeft += half;
+    const wrap = (value: number) => {
+      if (!halfWidth) return value;
+      let nextOffset = value % halfWidth;
+      if (nextOffset < 0) nextOffset += halfWidth;
+      return nextOffset;
     };
 
-    const move = (direction) => {
-      normalize();
-      viewport.scrollBy({ left: direction * step(), behavior: 'smooth' });
+    const stepFn = (ts: number) => {
+      if (!lastTs) lastTs = ts;
+      const dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+      if (!paused && halfWidth && nudgeFrame === null) {
+        offset = wrap(offset + PX_PER_SECOND * dt);
+        apply();
+      }
+      requestAnimationFrame(stepFn);
     };
 
-    prev.addEventListener('click', () => move(-1));
-    next.addEventListener('click', () => move(1));
-    viewport.addEventListener('scroll', normalize, { passive: true });
+    const nudge = (direction: 1 | -1) => {
+      const stepPx = itemStep();
+      if (!halfWidth) return;
+      paused = true;
+      if (nudgeFrame !== null) {
+        window.cancelAnimationFrame(nudgeFrame);
+        nudgeFrame = null;
+      }
+      if (direction < 0 && offset - stepPx < 0) {
+        offset += halfWidth;
+        apply();
+      }
+      const from = offset;
+      const to = offset + direction * stepPx;
+      const duration = prefersReduced ? 0 : 320;
+      const startedAt = performance.now();
+      const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+      const animate = (ts: number) => {
+        const progress = duration === 0 ? 1 : Math.min(1, (ts - startedAt) / duration);
+        offset = from + (to - from) * easeOutCubic(progress);
+        apply();
+        if (progress < 1) {
+          nudgeFrame = window.requestAnimationFrame(animate);
+        } else {
+          nudgeFrame = null;
+          offset = wrap(to);
+          apply();
+          paused = prefersReduced;
+        }
+      };
+      nudgeFrame = window.requestAnimationFrame(animate);
+      if (resumeTimer) window.clearTimeout(resumeTimer);
+      resumeTimer = null;
+    };
+
+    prev.addEventListener('click', () => nudge(-1));
+    next.addEventListener('click', () => nudge(1));
+
+    wall.addEventListener('mouseenter', () => { paused = true; });
+    wall.addEventListener('mouseleave', () => {
+      if (resumeTimer) { window.clearTimeout(resumeTimer); resumeTimer = null; }
+      paused = prefersReduced;
+    });
+    wall.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    wall.addEventListener('touchend', () => {
+      if (resumeTimer) window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => { paused = prefersReduced; }, RESUME_DELAY_MS);
+    }, { passive: true });
+
+    window.addEventListener('resize', measure);
+
+    const imgs = Array.from(track.querySelectorAll('img')) as HTMLImageElement[];
+    if (imgs.length === 0) {
+      measure();
+    } else {
+      Promise.all(
+        imgs.map((img) =>
+          !img.complete
+            ? new Promise<void>((resolve) => {
+                img.addEventListener('load', () => resolve(), { once: true });
+                img.addEventListener('error', () => resolve(), { once: true });
+              })
+            : Promise.resolve(),
+        ),
+      ).then(measure);
+      measure();
+    }
+
+    requestAnimationFrame(stepFn);
   });
 </script>
 
@@ -73,16 +177,10 @@ const loopPhotos = [...photos, ...photos];
   }
 
   .campus-photo-wall__viewport {
-    overflow-x: auto;
+    overflow: hidden;
     overflow-y: hidden;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
-  }
-
-  .campus-photo-wall__viewport::-webkit-scrollbar {
-    display: none;
   }
 
   .campus-photo-wall__track {
@@ -90,6 +188,8 @@ const loopPhotos = [...photos, ...photos];
     width: max-content;
     gap: 1.5rem;
     padding: 0.25rem 0.25rem 0.75rem;
+    will-change: transform;
+    transition: none;
   }
 
   .campus-photo-wall__card {
