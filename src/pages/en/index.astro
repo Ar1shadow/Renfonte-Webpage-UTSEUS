@@ -9,13 +9,35 @@ import CourseLinks from '../../components/CourseLinks.astro';
 import InnovationContest from '../../components/InnovationContest.astro';
 import ClubsList from '../../components/ClubsList.astro';
 import InnovationSemesterWall from '../../components/InnovationSemesterWall.astro';
+import CampusPhotoWall from '../../components/CampusPhotoWall.astro';
 import PartnersCarousel from '../../components/PartnersCarousel.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
+import ContactCard from '../../components/ContactCard.astro';
 import { useTranslations } from '../../i18n/utils';
 import { getEntry, render } from 'astro:content';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
+const contacts = [
+  {
+    role: 'Direction aux relations internationales',
+    name: 'Gaëlle Dacqmine',
+    phone: '+33 (0)3 44 23 49 63',
+    email: 'gaelle.dacqmine@utc.fr',
+  },
+  {
+    role: 'Direction aux relations internationales',
+    name: 'Aurélien Jacques',
+    phone: '+33 (0)3 44 23 44 23',
+    email: 'aurelien.jacques@utc.fr',
+  },
+  {
+    role: 'Pôle partenariat',
+    name: 'Baoxia CHEN',
+    phone: 'Téléphone inconnu',
+    email: 'baoxia.chen@utc.fr',
+  },
+];
 const about = await getEntry('sections', `${lang}/01-about`);
 const courses = await getEntry('sections', `${lang}/06-courses`);
 const partners = await getEntry('sections', `${lang}/04-partners`);
@@ -41,6 +63,7 @@ const { Content: Partners } = await render(partners!);
       <SectionBlock id="campuslife" title={t('section.campuslife.title')}>
         <ClubsList lang={lang} />
         <InnovationSemesterWall lang={lang} />
+        <CampusPhotoWall />
       </SectionBlock>
       <SectionBlock id="partners" title={t('section.partners.title')}>
         <Partners />
@@ -50,6 +73,9 @@ const { Content: Partners } = await render(partners!);
         <TestimonialCarousel lang={lang} />
       </SectionBlock>
       <SectionBlock id="contact" title={t('section.contact.title')}>
+        <div class="contact-grid">
+          {contacts.map((contact) => <ContactCard {...contact} />)}
+        </div>
       </SectionBlock>
     </div>
   </div>

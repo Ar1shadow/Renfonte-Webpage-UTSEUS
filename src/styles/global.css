@@ -1174,3 +1174,19 @@ h2 { font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem); line-height: 1.15; }
   text-decoration: none;
   outline: none;
 }
+
+/* ============================================================
+   Contact cards
+   ============================================================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

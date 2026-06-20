@@ -1,0 +1,161 @@
+---
+const photos = [
+  { src: "/images/vie d'etudient/2.jpg", alt: 'UTSEUS student life photo 2' },
+  { src: "/images/vie d'etudient/5.jpg", alt: 'UTSEUS student life photo 5' },
+  { src: "/images/vie d'etudient/6.jpg", alt: 'UTSEUS student life photo 6' },
+  { src: "/images/vie d'etudient/8.jpg", alt: 'UTSEUS student life photo 8' },
+  { src: "/images/vie d'etudient/9.jpg", alt: 'UTSEUS student life photo 9' },
+  { src: "/images/vie d'etudient/10.jpg", alt: 'UTSEUS student life photo 10' },
+  { src: "/images/vie d'etudient/11.jpg", alt: 'UTSEUS student life photo 11' },
+  { src: "/images/vie d'etudient/12.jpg", alt: 'UTSEUS student life photo 12' },
+];
+const loopPhotos = [...photos, ...photos];
+---
+
+<section class="campus-photo-wall" aria-label="Campus life photo wall" data-campus-photo-wall>
+  <button class="campus-photo-wall__nav campus-photo-wall__nav--prev" type="button" aria-label="Previous photo" data-campus-photo-prev>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+  <div class="campus-photo-wall__viewport" data-campus-photo-viewport>
+    <div class="campus-photo-wall__track" data-campus-photo-track>
+      {loopPhotos.map((photo, index) => (
+        <figure class="campus-photo-wall__card" aria-hidden={index >= photos.length ? 'true' : undefined}>
+          <img src={photo.src} alt={index >= photos.length ? '' : photo.alt} loading="lazy" />
+        </figure>
+      ))}
+    </div>
+  </div>
+  <button class="campus-photo-wall__nav campus-photo-wall__nav--next" type="button" aria-label="Next photo" data-campus-photo-next>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+</section>
+
+<script>
+  document.querySelectorAll('[data-campus-photo-wall]').forEach((wall) => {
+    const viewport = wall.querySelector('[data-campus-photo-viewport]');
+    const track = wall.querySelector('[data-campus-photo-track]');
+    const prev = wall.querySelector('[data-campus-photo-prev]');
+    const next = wall.querySelector('[data-campus-photo-next]');
+    if (!(viewport instanceof HTMLElement) || !(track instanceof HTMLElement) || !(prev instanceof HTMLButtonElement) || !(next instanceof HTMLButtonElement)) return;
+
+    const step = () => {
+      const first = track.querySelector('.campus-photo-wall__card');
+      if (!(first instanceof HTMLElement)) return 360;
+      const gap = parseFloat(getComputedStyle(track).gap || '0') || 0;
+      return first.getBoundingClientRect().width + gap;
+    };
+
+    const normalize = () => {
+      const half = track.scrollWidth / 2;
+      if (viewport.scrollLeft >= half) viewport.scrollLeft -= half;
+      if (viewport.scrollLeft < 0) viewport.scrollLeft += half;
+    };
+
+    const move = (direction) => {
+      normalize();
+      viewport.scrollBy({ left: direction * step(), behavior: 'smooth' });
+    };
+
+    prev.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    viewport.addEventListener('scroll', normalize, { passive: true });
+  });
+</script>
+
+<style>
+  .campus-photo-wall {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .campus-photo-wall__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  }
+
+  .campus-photo-wall__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .campus-photo-wall__track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    padding: 0.25rem 0.25rem 0.75rem;
+  }
+
+  .campus-photo-wall__card {
+    flex: 0 0 clamp(18rem, 31vw, 28rem);
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(23, 54, 93, 0.12);
+    border-radius: var(--radius-md);
+    background: #fff;
+    box-shadow: 0 18px 44px rgba(23, 54, 93, 0.13);
+  }
+
+  .campus-photo-wall__card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .campus-photo-wall__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    place-items: center;
+    border: 1px solid rgba(23, 54, 93, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--color-heading);
+    cursor: pointer;
+    transform: translateY(-50%);
+    box-shadow: 0 10px 26px rgba(23, 54, 93, 0.18);
+  }
+
+  .campus-photo-wall__nav:hover {
+    color: var(--color-accent);
+  }
+
+  .campus-photo-wall__nav svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  .campus-photo-wall__nav--prev {
+    left: 0;
+  }
+
+  .campus-photo-wall__nav--next {
+    right: 0;
+  }
+
+  @media (max-width: 640px) {
+    .campus-photo-wall__track {
+      gap: 1rem;
+    }
+
+    .campus-photo-wall__card {
+      flex-basis: min(78vw, 22rem);
+    }
+
+    .campus-photo-wall__nav {
+      width: 2.8rem;
+      height: 2.8rem;
+    }
+  }
+</style>

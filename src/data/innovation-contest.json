@@ -2,7 +2,7 @@
   {
     "id": "row-1",
     "order": 1,
-    "image": "/images/concours d'innovation_3.jpg",
+    "image": "/images/vie d'etudient/10.jpg",
     "alt": {
       "en": "Students presenting at the UTSEUS Innovation Contest",
       "fr": "Étudiants présentant au Concours d’innovation UTSEUS",
@@ -17,7 +17,7 @@
   {
     "id": "row-2",
     "order": 2,
-    "image": "/images/concours d'innovation_4.jpg",
+    "image": "/images/vie d'etudient/11.jpg",
     "alt": {
       "en": "Team prototyping during the contest sprint track",
       "fr": "Équipe en prototypage sur la piste sprint du concours",
@@ -32,7 +32,7 @@
   {
     "id": "row-3",
     "order": 3,
-    "image": "/images/concours d'innovation_5.jpg",
+    "image": "/images/vie d'etudient/12.jpg",
     "alt": {
       "en": "Jury panel during the contest's final defence",
       "fr": "Jury lors de la soutenance finale du concours",
