@@ -21,10 +21,10 @@ const details: Record<Lang, string[]> = {
   ],
 };
 
-const marker: Record<Lang, string> = {
-  en: '【UI-TASK-04】 Key figures redesign',
-  fr: '【UI-TASK-04】 Refonte des chiffres clés',
-  zh: '【UI-TASK-04】 关键数字卡片重设计',
+const ariaLabel: Record<Lang, string> = {
+  en: 'Key figures',
+  fr: 'Chiffres clés',
+  zh: '关键数字',
 };
 
 const visualTypes = ['timeline', 'exchange', 'tracks'];
@@ -35,8 +35,7 @@ const trackIconSrcs = [
   '/images/icons/generated/major-materials-science.png',
 ];
 ---
-<section class="key-figures" aria-label={marker[lang]}>
-  <p class="key-figures__marker">{marker[lang]}</p>
+<section class="key-figures" aria-label={ariaLabel[lang]}>
   <ul class="key-figures__grid">
     {figures.map((f, index) => (
     <li class={`key-figure key-figure--${visualTypes[index]}`}>

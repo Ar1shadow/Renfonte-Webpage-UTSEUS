@@ -35,7 +35,52 @@ const c = copy[lang];
   <header class="campus-sub__header">
     <h3 class="campus-sub__heading">{c.heading}</h3>
   </header>
-  <div class="campus-sub__text">
-    {c.paragraphs.map((p) => <p>{p}</p>)}
-  </div>
+  <article class="semester-card">
+    <p class="semester-card__text">{c.paragraphs.join(' ')}</p>
+  </article>
 </section>
+
+<style>
+  .semester-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 16rem;
+    border: 1px solid color-mix(in srgb, var(--color-heading) 16%, transparent);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    background-image:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 52%, rgba(255, 255, 255, 0.34) 76%, rgba(255, 255, 255, 0.12) 100%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(234, 240, 248, 0.66)),
+      url("/images/innovation-semester-illustration.png");
+    background-position: center, center, right center;
+    background-size: auto, auto, 58% 100%;
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow-card);
+  }
+  .semester-card__text {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    max-width: 68ch;
+    padding: 1.85rem 2.1rem;
+    color: var(--color-fg);
+    font-size: 1rem;
+    line-height: 1.78;
+  }
+  @media (max-width: 640px) {
+    .semester-card {
+      min-height: auto;
+      background-image:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.94) 44%, rgba(255, 255, 255, 0.96) 100%),
+        url("/images/innovation-semester-illustration.png");
+      background-position: center, center top;
+      background-size: auto, 100% auto;
+      background-repeat: no-repeat;
+    }
+    .semester-card__text {
+      max-width: none;
+      padding: 1.35rem 1.4rem;
+    }
+  }
+</style>

@@ -51,7 +51,7 @@ const linkLabel = lang === 'fr' ? 'Site officiel ↗' : lang === 'zh' ? '官网 
 
 <script>
   const PX_PER_SECOND = 30;
-  const RESUME_DELAY_MS = 1200;
+  const RESUME_DELAY_MS = 180;
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.querySelectorAll<HTMLElement>('[data-logo-marquee]').forEach((root) => {
@@ -65,9 +65,16 @@ const linkLabel = lang === 'fr' ? 'Site officiel ↗' : lang === 'zh' ? '官网 
     let resumeTimer: number | null = null;
     let lastTs = 0;
     let halfWidth = 0;
+    let nudgeFrame: number | null = null;
 
     const measure = () => {
-      halfWidth = track.scrollWidth / 2;
+      const items = Array.from(track.querySelectorAll<HTMLElement>('.logo-marquee__item'));
+      const midpoint = items.length / 2;
+      const first = items[0];
+      const secondSetFirst = items[midpoint];
+      halfWidth = first && secondSetFirst
+        ? secondSetFirst.offsetLeft - first.offsetLeft
+        : track.scrollWidth / 2;
     };
 
     const apply = () => {
@@ -93,7 +100,7 @@ const linkLabel = lang === 'fr' ? 'Site officiel ↗' : lang === 'zh' ? '官网 
       if (!lastTs) lastTs = ts;
       const dt = (ts - lastTs) / 1000;
       lastTs = ts;
-      if (!paused && halfWidth) {
+      if (!paused && halfWidth && nudgeFrame === null) {
         offset = wrap(offset + PX_PER_SECOND * dt);
         apply();
       }
@@ -102,13 +109,37 @@ const linkLabel = lang === 'fr' ? 'Site officiel ↗' : lang === 'zh' ? '官网 
 
     const nudge = (direction: 1 | -1) => {
       const stepPx = itemStep();
+      if (!halfWidth) return;
       paused = true;
-      track.classList.add('is-animating');
-      offset = wrap(offset + direction * stepPx);
-      apply();
-      window.setTimeout(() => track.classList.remove('is-animating'), 380);
+      if (nudgeFrame !== null) {
+        window.cancelAnimationFrame(nudgeFrame);
+        nudgeFrame = null;
+      }
+      if (direction < 0 && offset - stepPx < 0) {
+        offset += halfWidth;
+        apply();
+      }
+      const from = offset;
+      const to = offset + direction * stepPx;
+      const duration = prefersReduced ? 0 : 320;
+      const startedAt = performance.now();
+      const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+      const animate = (ts: number) => {
+        const progress = duration === 0 ? 1 : Math.min(1, (ts - startedAt) / duration);
+        offset = from + (to - from) * easeOutCubic(progress);
+        apply();
+        if (progress < 1) {
+          nudgeFrame = window.requestAnimationFrame(animate);
+        } else {
+          nudgeFrame = null;
+          offset = wrap(to);
+          apply();
+          paused = prefersReduced;
+        }
+      };
+      nudgeFrame = window.requestAnimationFrame(animate);
       if (resumeTimer) window.clearTimeout(resumeTimer);
-      resumeTimer = window.setTimeout(() => { paused = prefersReduced; }, RESUME_DELAY_MS);
+      resumeTimer = null;
     };
 
     prevBtn.addEventListener('click', () => nudge(-1));
@@ -167,9 +198,7 @@ const linkLabel = lang === 'fr' ? 'Site officiel ↗' : lang === 'zh' ? '官网 
     gap: 1.25rem;
     width: max-content;
     will-change: transform;
-  }
-  .logo-marquee__track.is-animating {
-    transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: none;
   }
   .logo-marquee__item {
     flex: 0 0 auto;
@@ -284,7 +313,6 @@ const linkLabel = lang === 'fr' ? 'Site officiel ↗' : lang === 'zh' ? '官网 
   @media (prefers-reduced-motion: reduce) {
     .partner-card,
     .logo-marquee__nav,
-    .logo-marquee__track,
-    .logo-marquee__track.is-animating { transition: none; }
+    .logo-marquee__track { transition: none; }
   }
 </style>

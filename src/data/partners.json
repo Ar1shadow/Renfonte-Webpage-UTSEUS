@@ -40,7 +40,7 @@
       "en": "Digital twin platform for sustainable buildings and infrastructure.",
       "zh": "面向可持续建筑与基础设施的数字孪生平台。"
     },
-    "website": "https://www.akila.ai",
+    "website": "https://www.akila3d.com",
     "logo": "/images/logos/Akila.png"
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "slug": "s-chuang-china",
-    "name": { "fr": "S创中国", "en": "S-Chuang China", "zh": "S创中国" },
+    "name": { "fr": "S-Chuang Chine", "en": "S-Chuang China", "zh": "S创中国" },
     "description": {
       "fr": "Plateforme franco-chinoise d’innovation et d’entrepreneuriat étudiant.",
       "en": "Sino-French platform for student innovation and entrepreneurship.",

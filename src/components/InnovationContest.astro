@@ -6,19 +6,90 @@ const { lang } = Astro.props as { lang: Lang };
 const t = useTranslations(lang);
 const entries = await getCollection('innovationContest');
 const rows = entries.map((e) => e.data).sort((a, b) => a.order - b.order);
+const copy = {
+  fr: {
+    eyebrow: 'Concours étudiant',
+    stats: [
+      { value: '2020', label: 'création' },
+      { value: '1200+', label: 'participants cumulés' },
+      { value: '300+', label: 'équipes' },
+      { value: '5 mois', label: 'de décembre à avril' },
+    ],
+    cards: [
+      { label: 'Organisation', title: 'Un concours porté par l’institut et les entreprises' },
+      { label: 'Deux pistes', title: 'Créativité pour débuter, sprint pour accélérer' },
+      { label: 'Évaluation', title: 'Des projets jugés sur la faisabilité et l’impact' },
+    ],
+  },
+  en: {
+    eyebrow: 'Student contest',
+    stats: [
+      { value: '2020', label: 'created' },
+      { value: '1200+', label: 'participants' },
+      { value: '300+', label: 'teams' },
+      { value: '5 months', label: 'December to April' },
+    ],
+    cards: [
+      { label: 'Organisation', title: 'A contest run with the institute and companies' },
+      { label: 'Two tracks', title: 'Creativity to start, sprint to accelerate' },
+      { label: 'Evaluation', title: 'Projects judged on feasibility and impact' },
+    ],
+  },
+  zh: {
+    eyebrow: '学生创新赛事',
+    stats: [
+      { value: '2020', label: '首届举办' },
+      { value: '1200+', label: '累计参与者' },
+      { value: '300+', label: '参赛团队' },
+      { value: '5个月', label: '12 月至次年 4 月' },
+    ],
+    cards: [
+      { label: '组织支持', title: '由学院与企业共同推动的创新赛事' },
+      { label: '双赛道', title: '创意启蒙与项目冲刺并行' },
+      { label: '评审成果', title: '从技术可行性到产业价值的综合评价' },
+    ],
+  },
+}[lang];
+
 ---
 <section class="contest" aria-labelledby="contest-heading">
   <header class="contest__header">
-    <h3 id="contest-heading" class="contest__title">{t('courses.contest.title')}</h3>
-    <p class="contest__lead">{t('courses.contest.lead')}</p>
+    <figure class="contest__visual" aria-hidden="true">
+      <img
+        src="/images/innovation-contest-process-transparent.png"
+        alt=""
+        loading="lazy"
+        width="768"
+        height="1376"
+        style="position:absolute;top:50%;left:52%;width:26rem;max-width:none;height:auto;object-fit:contain;object-position:center;transform:translate(-50%, -50%) rotate(-90deg);transform-origin:center;"
+      />
+    </figure>
+    <div class="contest__intro">
+      <p class="contest__eyebrow">{copy.eyebrow}</p>
+      <h3 id="contest-heading" class="contest__title">{t('courses.contest.title')}</h3>
+      <p class="contest__lead">{t('courses.contest.lead')}</p>
+      <dl class="contest__stats" aria-label={t('courses.contest.title')}>
+        {copy.stats.map((stat) => (
+          <div class="contest-stat">
+            <dt>{stat.value}</dt>
+            <dd>{stat.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   </header>
-  <ol class="contest__rows">
-    {rows.map((row) => (
-      <li class="contest-row">
-        <figure class="contest-row__figure">
-          <img src={row.image} alt={row.alt[lang]} loading="lazy" width="800" height="600" />
+
+  <ol class="contest__cards">
+    {rows.map((row, index) => (
+      <li class="contest-card">
+        <figure class="contest-card__figure">
+          <img src={row.image} alt={row.alt[lang]} loading="lazy" width="800" height="500" />
         </figure>
-        <p class="contest-row__text">{row.paragraph[lang]}</p>
+        <div class="contest-card__body">
+          <p class="contest-card__label">{copy.cards[index].label}</p>
+          <h4>{copy.cards[index].title}</h4>
+          <p>{row.paragraph[lang]}</p>
+        </div>
       </li>
     ))}
   </ol>
@@ -26,76 +97,195 @@ const rows = entries.map((e) => e.data).sort((a, b) => a.order - b.order);
 
 <style>
   .contest {
-    margin: 3rem 0 0;
-    padding-top: 2rem;
-    border-top: 2px solid var(--color-fg);
+    margin: 3.5rem 0 0;
+    padding: 2rem;
+    border: 1px solid color-mix(in srgb, var(--color-heading) 16%, transparent);
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(234, 240, 248, 0.64)),
+      var(--color-surface);
+    box-shadow: var(--shadow-card);
   }
   .contest__header {
-    margin-bottom: 2rem;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+  }
+  .contest__eyebrow {
+    width: max-content;
+    margin: 0 0 0.75rem;
+    padding: 0.25rem 0.55rem;
+    border-left: 4px solid var(--color-yellow);
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
   .contest__title {
     margin: 0 0 0.5rem;
     font-family: var(--font-display, inherit);
-    font-size: 1.75rem;
-    line-height: 1.15;
-    color: var(--color-fg);
+    font-size: clamp(1.55rem, 1.5vw + 1rem, 2.2rem);
+    line-height: 1.12;
+    color: var(--color-heading);
+  }
+  .contest__intro {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    width: min(70%, 43rem);
   }
   .contest__lead {
     margin: 0;
-    max-width: 56ch;
+    max-width: 62ch;
     color: var(--color-muted, var(--color-fg));
-    opacity: 0.85;
     font-size: 1rem;
-    line-height: 1.55;
+    line-height: 1.6;
   }
-  .contest__rows {
+  .contest__visual {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(58%, 35rem);
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    background: transparent;
+    opacity: 0.96;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.16) 22%, rgba(0, 0, 0, 0.76) 52%, #000 76%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.16) 22%, rgba(0, 0, 0, 0.76) 52%, #000 76%);
+  }
+  .contest__visual img {
+    position: absolute;
+    top: 50%;
+    left: 52%;
+    display: block;
+    width: 26rem;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: center;
+    transform: translate(-50%, -50%) rotate(90deg);
+    transform-origin: center;
+  }
+  .contest__stats {
+    margin: 1.25rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .contest-stat {
+    padding: 0.8rem;
+    border: 1px solid color-mix(in srgb, var(--color-heading) 14%, transparent);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.76);
+  }
+  .contest-stat dt {
+    color: var(--color-heading);
+    font-family: var(--font-display, inherit);
+    font-size: 1.45rem;
+    font-weight: 850;
+    line-height: 1;
+  }
+  .contest-stat dd {
+    margin: 0.3rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+  .contest__cards {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-  .contest-row {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    align-items: center;
-    gap: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
   }
-  .contest-row:nth-child(even) {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  }
-  .contest-row:nth-child(even) .contest-row__figure {
-    order: 2;
-  }
-  .contest-row:nth-child(even) .contest-row__text {
-    order: 1;
-  }
-  .contest-row__figure {
-    margin: 0;
+  .contest-card {
     overflow: hidden;
-    border: 2px solid var(--color-fg);
-    background: var(--color-bg);
-    aspect-ratio: 4 / 3;
+    border: 1px solid color-mix(in srgb, var(--color-heading) 16%, transparent);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    transform-origin: center;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
   }
-  .contest-row__figure img {
+  .contest-card:hover,
+  .contest-card:focus-within {
+    transform: translateY(-3px) scale(1.012);
+    border-color: color-mix(in srgb, var(--color-accent) 34%, transparent);
+    box-shadow: 0 18px 38px rgba(23, 54, 93, 0.16);
+  }
+  .contest-card__figure {
+    margin: 0;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--color-institutional-soft);
+  }
+  .contest-card__figure img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-  .contest-row__text {
+  .contest-card__body {
+    padding: 1rem;
+  }
+  .contest-card__label {
+    margin: 0 0 0.45rem;
+    color: var(--color-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .contest-card h4 {
+    margin: 0 0 0.6rem;
+    color: var(--color-heading);
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+  .contest-card__body p:last-child {
     margin: 0;
     color: var(--color-fg);
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: 0.94rem;
+    line-height: 1.58;
   }
-  @media (max-width: 720px) {
-    .contest-row,
-    .contest-row:nth-child(even) {
+  @media (max-width: 980px) {
+    .contest__cards {
       grid-template-columns: minmax(0, 1fr);
     }
-    .contest-row:nth-child(even) .contest-row__figure { order: 0; }
-    .contest-row:nth-child(even) .contest-row__text { order: 0; }
+    .contest__intro {
+      width: 100%;
+    }
+    .contest__visual {
+      position: relative;
+      width: 100%;
+      height: 10rem;
+      margin-top: 1rem;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.68) 22%, #000 52%, rgba(0, 0, 0, 0.84) 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.68) 22%, #000 52%, rgba(0, 0, 0, 0.84) 100%);
+    }
+    .contest__visual img {
+      width: 22rem;
+    }
+  }
+  @media (max-width: 720px) {
+    .contest {
+      padding: 1.25rem;
+    }
+    .contest__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 460px) {
+    .contest__stats {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 </style>

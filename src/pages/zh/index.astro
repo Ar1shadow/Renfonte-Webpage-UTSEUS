@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
-import SelectedPalettePanel from '../../components/SelectedPalettePanel.astro';
 import SectionBlock from '../../components/SectionBlock.astro';
 import SidebarTOC from '../../components/SidebarTOC.astro';
 import KeyFiguresGrid from '../../components/KeyFiguresGrid.astro';
@@ -26,10 +25,9 @@ const { Content: Partners } = await render(partners!);
 ---
 <BaseLayout lang={lang} title="UTSEUS - 中法工程师学院" description="UTSEUS：位于上海大学的中法工程师学院。">
   <Hero lang={lang} title={t('hero.title')} tagline={t('hero.tagline')} />
-  <SelectedPalettePanel lang={lang} />
-  <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-[260px_1fr] gap-8">
+  <div class="mx-auto max-w-7xl px-4 grid xl:grid-cols-[240px_minmax(0,1fr)] gap-8">
     <SidebarTOC lang={lang} />
-    <div>
+    <div class="min-w-0">
       <SectionBlock id="about" title={t('section.about.title')}>
         <KeyFiguresGrid lang={lang} />
         <About />
