@@ -26,15 +26,15 @@
     "year": 2024
   },
   {
-    "id": "amet-consectetur",
-    "name": "Amet Consectetur",
-    "promo": "TC04",
-    "program": "Language, culture and innovation",
+    "id": "yang-xiang",
+    "name": "Yang XIANG",
+    "promo": "UTSEUS",
+    "program": "Expérience internationale",
     "photo": "/images/generated/section-contact.png",
     "quote": {
-      "en": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.",
-      "fr": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.",
-      "zh": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error."
+      "en": "The UTSEUS programme is an innovative international project. It allows students to experience both Chinese and French student life and teaching models. In the environment of Shanghai University, it offers strong preparation for developing the skills of an international engineer.",
+      "fr": "Le projet UTSEUS est un programme international novateur. Il permet de découvrir à la fois la vie étudiante et les modèles d'enseignement chinois et français. Dans l'environnement de l'Université de Shanghai, il constitue un cadre très favorable pour développer les compétences d'un ingénieur international.",
+      "zh": "UTSEUS 项目是一个富有开创性的国际项目，你可以同时体验中国和法国两种学生生活和教学模式，在上海大学的环境下可以很好地培养国际工程师的能力。"
     },
     "year": 2025
   }
