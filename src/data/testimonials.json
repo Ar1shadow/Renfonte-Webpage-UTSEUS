@@ -1,16 +1,16 @@
 [
   {
-    "id": "lorem-ipsum",
-    "name": "Lorem Ipsum",
-    "promo": "GI06",
+    "id": "soraya-kadra",
+    "name": "Soraya Kadra",
+    "promo": "IE2",
     "program": "International Engineer",
     "photo": "/images/generated/section-mobility.png",
     "quote": {
-      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-      "fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-      "zh": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+      "en": "The quality, diversity and reputation of the IE2 programme's faculty were decisive factors, along with the diploma awarded on completion. I'm very satisfied with the course content, teaching quality and human connections. Through the IE2 programme we were introduced to Shanghai's entrepreneurial network, and on a personal level it helped me sharpen my career path toward the circular economy. Joining UTSEUS was an excellent decision!",
+      "fr": "La qualité, la diversité et la réputation des professeurs du programme (IE2) font partie des éléments décisifs, tout comme la possibilité de se voir décerner un diplôme à la fin de la formation. Je suis très satisfaite du contenu du cours, de la qualité de l'enseignement et des relations humaines. Grâce à ce programme (IE2), nous avons été initiés au réseau des entrepreneurs de Shanghai et, sur un plan plus personnel, il m'a permis d'affiner mon parcours professionnel vers une carrière dans l'économie circulaire. Rejoindre l'UTSEUS a été une excellente décision !",
+      "zh": "IE2 项目师资的水准、多样性与声望，是我做决定的关键因素，毕业可授予的文凭同样重要。我对课程内容、教学质量与人际氛围都非常满意。通过 IE2 项目，我们接触到上海的创业者网络；在个人层面，它帮助我把职业方向聚焦到循环经济领域。加入中欧工程技术学院，是一次绝佳的选择！"
     },
-    "year": 2024
+    "year": 2025
   },
   {
     "id": "dolor-sit",
@@ -32,8 +32,8 @@
     "program": "Expérience internationale",
     "photo": "/images/generated/section-contact.png",
     "quote": {
-      "en": "The UTSEUS programme is an innovative international project. It allows students to experience both Chinese and French student life and teaching models. In the environment of Shanghai University, it offers strong preparation for developing the skills of an international engineer.",
-      "fr": "Le projet UTSEUS est un programme international novateur. Il permet de découvrir à la fois la vie étudiante et les modèles d'enseignement chinois et français. Dans l'environnement de l'Université de Shanghai, il constitue un cadre très favorable pour développer les compétences d'un ingénieur international.",
+      "en": "UTSEUS is an innovative international programme: you live Chinese and French student life and teaching models side by side, and Shanghai University offers an ideal setting to build international engineering skills.",
+      "fr": "UTSEUS est un programme international novateur : on y vit en parallèle la vie étudiante et l'enseignement chinois et français, et l'Université de Shanghai offre un cadre idéal pour développer ses compétences d'ingénieur international.",
       "zh": "UTSEUS 项目是一个富有开创性的国际项目，你可以同时体验中国和法国两种学生生活和教学模式，在上海大学的环境下可以很好地培养国际工程师的能力。"
     },
     "year": 2025

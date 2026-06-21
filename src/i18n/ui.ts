@@ -36,6 +36,8 @@ export const ui = {
     'video.play': 'Lire la vidéo',
     'lang.switch': 'Langue',
     'footer.copyright': '© {year} UTC × UTSEUS',
+    'testimonial.readMore': 'Lire plus',
+    'testimonial.readLess': 'Réduire',
   },
   en: {
     'nav.about': 'About',
@@ -70,6 +72,8 @@ export const ui = {
     'video.play': 'Play video',
     'lang.switch': 'Language',
     'footer.copyright': '© {year} UTC × UTSEUS',
+    'testimonial.readMore': 'Read more',
+    'testimonial.readLess': 'Read less',
   },
   zh: {
     'nav.about': '关于',
@@ -104,5 +108,7 @@ export const ui = {
     'video.play': '播放视频',
     'lang.switch': '语言',
     'footer.copyright': '© {year} UTC × UTSEUS',
+    'testimonial.readMore': '展开',
+    'testimonial.readLess': '收起',
   },
 } satisfies Record<Lang, Record<string, string>>;
