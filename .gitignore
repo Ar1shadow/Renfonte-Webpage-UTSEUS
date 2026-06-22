@@ -51,3 +51,8 @@ tmp/lh-*.html
 
 # bilingual ZH companion plans (FR is canonical, committed)
 docs/plans/*.zh.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
