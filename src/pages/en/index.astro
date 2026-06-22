@@ -20,22 +20,19 @@ const lang = 'en' as const;
 const t = useTranslations(lang);
 const contacts = [
   {
-    role: 'Direction aux relations internationales',
-    name: 'Gaëlle Dacqmine',
-    phone: '+33 (0)3 44 23 49 63',
-    email: 'gaelle.dacqmine@utc.fr',
+    role: 'Directeur à la Formation et à la Pédagogie',
+    name: 'Antoine Jouglet',
+    email: 'antoine.jouglet@hds.utc.fr',
   },
   {
-    role: 'Direction aux relations internationales',
-    name: 'Aurélien Jacques',
-    phone: '+33 (0)3 44 23 44 23',
-    email: 'aurelien.jacques@utc.fr',
-  },
-  {
-    role: 'Pôle partenariat',
-    name: 'Baoxia CHEN',
-    phone: '+33 03 44 23 44 93',
+    role: 'Direction à la Formation et à la Pédagogie\nCoordinatrice du Projet UTSEUS',
+    name: 'Baoxia Chen',
     email: 'baoxia.chen@utc.fr',
+  },
+  {
+    role: "Directeur français de l'UTSEUS",
+    name: 'Fabien Pfaender',
+    email: 'fabien.pfaender@utc.fr',
   },
 ];
 const about = await getEntry('sections', `${lang}/01-about`);
